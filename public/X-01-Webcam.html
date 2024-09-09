@@ -35,14 +35,13 @@
     <div id="gallery"></div>
 
     <script>
-        // Access the webcam
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const captureButton = document.getElementById('capture');
         const gallery = document.getElementById('gallery');
         const context = canvas.getContext('2d');
 
-        // Request access to the webcam
+        // Access the webcam
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => {
                 video.srcObject = stream;
@@ -52,19 +51,102 @@
                 console.error('Error accessing the webcam: ', error);
             });
 
-        // Capture image from webcam and display it
+        // Capture and upload image
         captureButton.addEventListener('click', () => {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            // Convert canvas to a JPEG data URL
+            // Convert canvas to JPEG data URL
             const dataURL = canvas.toDataURL('image/jpeg');
 
-            // Create an image element to display the captured image
-            const img = document.createElement('img');
-            img.src = dataURL;
-            gallery.appendChild(img);
+            // Upload the image to the server
+            fetch('/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ image: dataURL })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the gallery with the new image
+                const img = document.createElement('img');
+                img.src = data.url;
+                gallery.appendChild(img);
+            })
+            .catch(error => {
+                console.error('Error uploading image: ', error);
+            });
+        });
+
+        // Load existing images
+        fetch('/images')
+            .then(response => response.json())
+            .then(images => {
+                images.forEach(imgUrl => {
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    gallery.appendChild(img);
+                });
+            });
+    </script>
+
+    <!-- Node.js server-side script -->
+    <script>
+        const fs = require('fs');
+        const path = require('path');
+        const express = require('express');
+        const bodyParser = require('body-parser');
+        const multer = require('multer');
+        const app = express();
+        const port = 3000;
+
+        // Set up storage and upload handling
+        const upload = multer({
+            storage: multer.diskStorage({
+                destination: (req, file, cb) => {
+                    cb(null, 'uploads/');
+                },
+                filename: (req, file, cb) => {
+                    cb(null, Date.now() + path.extname(file.originalname));
+                }
+            })
+        });
+
+        // Serve static files
+        app.use(express.static('public'));
+        app.use('/uploads', express.static('uploads'));
+        app.use(bodyParser.json());
+
+        // Endpoint to handle image uploads
+        app.post('/upload', (req, res) => {
+            const imageData = req.body.image;
+            const base64Data = imageData.replace(/^data:image\/jpeg;base64,/, '');
+            const filename = `uploads/${Date.now()}.jpg`;
+
+            fs.writeFile(filename, base64Data, 'base64', (err) => {
+                if (err) {
+                    return res.status(500).json({ error: 'Failed to save image' });
+                }
+                res.json({ url: `/${filename}` });
+            });
+        });
+
+        // Endpoint to list all images
+        app.get('/images', (req, res) => {
+            fs.readdir('uploads/', (err, files) => {
+                if (err) {
+                    return res.status(500).json({ error: 'Failed to read images' });
+                }
+                const imageUrls = files.map(file => `/${file}`);
+                res.json(imageUrls);
+            });
+        });
+
+        // Start server
+        app.listen(port, () => {
+            console.log(`Server running at http://localhost:${port}`);
         });
     </script>
 </body>
