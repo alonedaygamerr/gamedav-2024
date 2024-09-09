@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=4.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webcam Capture</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 300vh;
+            height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
         }
@@ -20,6 +20,9 @@
             border: 2px solid #ccc;
             display: block;
             margin: 0 auto;
+            width: 80%; /* Adjust the width of the video element */
+            max-width: 800px; /* Set a maximum width for larger screens */
+            height: auto; /* Maintain aspect ratio */
         }
         button {
             margin-top: 10px;
@@ -60,7 +63,7 @@
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
             // Convert the canvas to a data URL and set it as the download link href
-            const dataURL = canvas.toDataURL('image/jpg');
+            const dataURL = canvas.toDataURL('image/png');
             downloadLink.href = dataURL;
             downloadLink.click(); // Trigger the download
         });
