@@ -6,66 +6,65 @@
     <title>Webcam Capture</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #container {
+            font-family: Arial, sans-serif;
             text-align: center;
+            margin: 20px;
         }
         video {
-            border: 2px solid #ccc;
-            display: block;
-            margin: 0 auto;
-            width: 80%; /* Adjust the width of the video element */
-            max-width: 1080px; /* Set a maximum width for larger screens */
-            height: auto; /* Maintain aspect ratio */
+            border: 1px solid #ccc;
+            width: 80%;
+            max-width: 600px;
+            height: auto;
         }
-        button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+        canvas {
+            display: none;
+        }
+        #gallery img {
+            width: 100px;
+            height: auto;
+            margin: 5px;
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <video id="video" autoplay></video>
-        <button id="capture">Capture Image</button>
-        <a id="download" download="webcam_capture.png">Download Image</a>
-    </div>
-    <script>
-        // Get references to the video element and the download link
-        const video = document.getElementById('video');
-        const captureButton = document.getElementById('capture');
-        const downloadLink = document.getElementById('download');
+    <h1>Webcam Capture</h1>
+    <video id="video" autoplay></video>
+    <canvas id="canvas"></canvas>
+    <br>
+    <button id="capture">Capture</button>
+    <div id="gallery"></div>
 
+    <script>
         // Access the webcam
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureButton = document.getElementById('capture');
+        const gallery = document.getElementById('gallery');
+        const context = canvas.getContext('2d');
+
+        // Request access to the webcam
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => {
                 video.srcObject = stream;
                 video.play();
             })
             .catch(error => {
-                console.error('Error accessing webcam:', error);
+                console.error('Error accessing the webcam: ', error);
             });
 
-        // Capture image from webcam
+        // Capture image from webcam and display it
         captureButton.addEventListener('click', () => {
-            const canvas = document.createElement('canvas');
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-            const context = canvas.getContext('2d');
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            // Convert the canvas to a data URL and set it as the download link href
-            const dataURL = canvas.toDataURL('image/png');
-            downloadLink.href = dataURL;
-            downloadLink.click(); // Trigger the download
+            // Convert canvas to a JPEG data URL
+            const dataURL = canvas.toDataURL('image/jpeg');
+
+            // Create an image element to display the captured image
+            const img = document.createElement('img');
+            img.src = dataURL;
+            gallery.appendChild(img);
         });
     </script>
 </body>
