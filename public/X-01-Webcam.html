@@ -60,7 +60,7 @@
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
             // Convert the canvas to a data URL and set it as the download link href
-            const dataURL = canvas.toDataURL('image/png');
+            const dataURL = canvas.toDataURL('image/jpg');
             downloadLink.href = dataURL;
             downloadLink.click(); // Trigger the download
         });
