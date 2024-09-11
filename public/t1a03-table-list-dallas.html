@@ -13,9 +13,10 @@
             text-align: center;
         }
         table {
-            width: 50%;
-            margin: 0 auto;
+            width: 30%; /* Make the table smaller */
+            margin: 20px auto; /* Center horizontally with some margin */
             border-collapse: collapse; /* Collapses the borders into a single border */
+            float: left; /* Aligns the table to the left side of the page */
         }
         th, td {
             border: 2px solid #000; /* Adds a plain black border to each cell */
@@ -25,27 +26,33 @@
         th {
             background-color: #e0e0e0; /* Light gray background for header cells */
         }
+        /* Optional: Add a margin to the right side of the table to separate from the content on the right */
+        .container {
+            margin-left: 20px; /* Adds space to the left of the container */
+        }
     </style>
 </head>
 <body>
     <h1>2x2 Table Example</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Header 1</th>
-                <th>Header 2</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Row 1, Cell 1</td>
-                <td>Row 1, Cell 2</td>
-            </tr>
-            <tr>
-                <td>Row 2, Cell 1</td>
-                <td>Row 2, Cell 2</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1, Cell 1</td>
+                    <td>Row 1, Cell 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2, Cell 1</td>
+                    <td>Row 2, Cell 2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
