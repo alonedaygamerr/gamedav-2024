@@ -11,17 +11,12 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            padding: 20px;
         }
 
         /* Heading Style */
         h1 {
-            text-align: center;
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
@@ -30,7 +25,7 @@
         .link-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start; /* Aligns items to the left */
         }
 
         /* Link Styling */
@@ -38,10 +33,7 @@
             font-size: 1.5em;
             text-decoration: none;
             color: #00eaff;
-            padding: 10px 20px;
-            margin: 10px;
-            border: 2px solid #00eaff;
-            border-radius: 8px;
+            padding: 10px 0;
             transition: background-color 0.3s, color 0.3s, transform 0.3s;
         }
 
@@ -49,7 +41,7 @@
         a:hover {
             background-color: #00eaff;
             color: #1e3c72;
-            transform: scale(1.05);
+            padding-left: 10px; /* Adds a small left padding on hover for effect */
         }
     </style>
 </head>
