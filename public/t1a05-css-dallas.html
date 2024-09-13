@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Basics Demo</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
+        /* Header styling */
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Text styling */
+        .styled-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Backgrounds */
+        .background-box {
+            background-color: lightblue;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* Borders, padding, and margin */
+        .border-box {
+            border: 2px solid #333;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* Flexbox layout */
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        .flex-item {
+            background-color: #ddd;
+            padding: 20px;
+            margin: 5px;
+            width: 100px;
+            text-align: center;
+        }
+
+        /* Hover effect */
+        .hover-link {
+            color: blue;
+            text-decoration: none;
+        }
+
+        .hover-link:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Basic CSS Demonstrations</h1>
+        <p>Explore simple CSS techniques below:</p>
+    </header>
+
+    <section>
+        <h2>1. Text Styling</h2>
+        <p class="styled-text">This text is styled with <strong>font-family</strong>, <strong>font-size</strong>, and <strong>color</strong>.</p>
+    </section>
+
+    <section>
+        <h2>2. Backgrounds</h2>
+        <div class="background-box">This box has a background color and padding.</div>
+    </section>
+
+    <section>
+        <h2>3. Borders and Padding</h2>
+        <div class="border-box">This box has a border, padding, and margin.</div>
+    </section>
+
+    <section>
+        <h2>4. Flexbox Layout</h2>
+        <div class="flex-container">
+            <div class="flex-item">Item 1</div>
+            <div class="flex-item">Item 2</div>
+            <div class="flex-item">Item 3</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>5. Hover Effects</h2>
+        <a href="#" class="hover-link">Hover over me</a>
+    </section>
+
+</body>
+</html>
