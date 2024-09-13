@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,10 +7,6 @@
         /* General body styling */
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
         }
 
         /* Header styling */
@@ -22,143 +17,44 @@
             padding: 1rem;
         }
 
-        /* Text styling */
-        .styled-text {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 18px;
-            color: #333;
-        }
-
-        /* Backgrounds */
-        .background-box {
-            background-color: lightblue;
+        /* Simple box styling */
+        .simple-box {
             padding: 10px;
             margin: 10px 0;
-        }
-
-        /* Borders, padding, and margin */
-        .border-box {
-            border: 2px solid #333;
-            padding: 15px;
-            margin: 15px 0;
+            border: 1px solid #333;
         }
 
         /* Flexbox layout */
         .flex-container {
             display: flex;
             justify-content: space-around;
-            background-color: #eee;
-            padding: 10px;
+            margin: 10px 0;
         }
 
         .flex-item {
+            padding: 10px;
             background-color: #ddd;
-            padding: 20px;
-            margin: 5px;
-            width: 100px;
-            text-align: center;
         }
-
-        /* Hover effect */
-        .hover-link {
-            color: blue;
-            text-decoration: none;
-        }
-
-        .hover-link:hover {
-            color: red;
-        }
-
-        /* Box Shadow */
-        .box-shadow {
-            width: 200px;
-            height: 100px;
-            background-color: #f0f0f0;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-            margin: 10px 0;
-            text-align: center;
-            padding-top: 30px;
-        }
-
-        /* Rounded Corners */
-        .rounded-box {
-            width: 200px;
-            height: 100px;
-            background-color: #add8e6;
-            border-radius: 15px;
-            margin: 10px 0;
-            text-align: center;
-            padding-top: 30px;
-        }
-
-        /* Text Align */
-        .center-text {
-            text-align: center;
-            font-size: 20px;
-            color: green;
-        }
-
-        /* Gradient Background */
-        .gradient-box {
-            width: 200px;
-            height: 100px;
-            background: linear-gradient(to right, red, yellow);
-            margin: 10px 0;
-            text-align: center;
-            padding-top: 30px;
-        }
-
     </style>
 </head>
 <body>
 
     <header>
         <h1>Basic CSS Demonstrations</h1>
-        <p>Explore 8 simple CSS techniques below:</p>
     </header>
 
     <section>
-        <h2>1. Text Styling</h2>
-        <p class="styled-text">This text is styled with <strong>font-family</strong>, <strong>font-size</strong>, and <strong>color</strong>.</p>
+        <h2>1. Simple Box</h2>
+        <div class="simple-box">This is a simple box with padding, margin, and border.</div>
     </section>
 
     <section>
-        <h2>2. Backgrounds</h2>
-        <div class="background-box">This box has a background color and padding.</div>
-    </section>
-
-    <section>
-        <h2>3. Borders and Padding</h2>
-        <div class="border-box">This box has a border, padding, and margin.</div>
-    </section>
-
-    <section>
-        <h2>4. Flexbox Layout</h2>
+        <h2>2. Flexbox Layout</h2>
         <div class="flex-container">
             <div class="flex-item">Item 1</div>
             <div class="flex-item">Item 2</div>
             <div class="flex-item">Item 3</div>
         </div>
-    </section>
-
-    <section>
-        <h2>5. Hover Effects</h2>
-        <a href="#" class="hover-link">Hover over me</a>
-    </section>
-
-    <section>
-        <h2>6. Box Shadow</h2>
-        <div class="box-shadow">This box has a shadow.</div>
-    </section>
-
-    <section>
-        <h2>7. Rounded Corners</h2>
-        <div class="rounded-box">This box has rounded corners.</div>
-    </section>
-
-    <section>
-        <h2>8. Gradient Background</h2>
-        <div class="gradient-box">This box has a gradient background.</div>
     </section>
 
 </body>
