@@ -1,5 +1,62 @@
-<html>
-  <head>
-    <title>dallas proper</title>
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .side-text {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: green;
+            font-size: 20px;
+        }
+        .side-text span {
+            display: block;
+            margin-bottom: 20px;
+        }
+        .side-text .blue {
+            color: blue;
+        }
+        .side-text .red {
+            color: red;
+        }
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .video-container video {
+            max-width: 80%;
+            height: auto;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            alert("Welcome to the website!");
+        }
+    </script>
+</head>
+<body>
+
+    <div class="side-text">
+        <span style="color: green;">Green Text</span>
+        <span class="blue">Blue Text</span>
+        <span class="red">Red Text</span>
+    </div>
+
+    <div class="video-container">
+        <video controls>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+</body>
 </html>
