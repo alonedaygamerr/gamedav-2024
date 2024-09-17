@@ -1,40 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dallas proper web page</title>
+    <title>dallas porper website</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .side-text {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            color: green;
-            font-size: 20px;
-        }
         .side-text span {
-            display: block;
+            font-size: 24px;
             margin-bottom: 20px;
         }
-        .side-text .blue {
-            color: blue;
-        }
-        .side-text .red {
-            color: red;
-        }
+        .green { color: green; }
+        .blue { color: blue; }
+        .red { color: red; }
+        
         .video-container {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
-        .video-container video {
-            max-width: 80%;
-            height: auto;
+        .video-container iframe {
+            width: 80%;
+            height: 60%;
         }
     </style>
     <script>
@@ -45,18 +30,23 @@
 </head>
 <body>
 
-    <div class="side-text">
-        <span style="color: green;">Green Text</span>
-        <span class="blue">Blue Text</span>
-        <span class="red">Red Text</span>
-    </div>
+    <div class="container">
+        <div class="side-text">
+            <span class="green">Green Text</span>
+            <span class="blue">Blue Text</span>
+            <span class="red">Red Text</span>
+        </div>
 
-    <div class="video-container">
-        <video controls>
-            <source src="video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUIcmlja3JvbGw%3D" 
+                title="YouTube video player" 
+                frameborder="0.5" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
     </div>
 
 </body>
+</html>
 </html>
