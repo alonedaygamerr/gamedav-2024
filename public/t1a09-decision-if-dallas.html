@@ -28,3 +28,61 @@
         document.getElementById('myDiv01').innerHTML = 'Was expecting Fred >:(';
     }
 "><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8th Grade Button Fun</title>
+</head>
+<body>
+    <h1 align="center">8th Grade Button Fun!</h1>
+
+    <!-- Text Input -->
+    <input type="text" id="myText" value="Type something here"><br><br>
+
+    <!-- Output Area -->
+    <div id="myDiv" style="border: 1px solid black; padding: 10px; width: 50%; margin: auto;">Click a button to do something fun!</div><br><br>
+
+    <!-- Button 1: Say Hello -->
+    <input type="button" value="Say Hello" onclick="
+        document.getElementById('myDiv').innerHTML = 'Hello, friend!';
+    "><br><br>
+
+    <!-- Button 2: Change Text Color -->
+    <input type="button" value="Change Text Color" onclick="
+        document.getElementById('myDiv').style.color = 'blue';
+    "><br><br>
+
+    <!-- Button 3: Make the Text Bigger -->
+    <input type="button" value="Make Text Bigger" onclick="
+        document.getElementById('myDiv').style.fontSize = '2em';
+    "><br><br>
+
+    <!-- Button 4: Reverse the Input Text -->
+    <input type="button" value="Reverse Text" onclick="
+        let text = document.getElementById('myText').value;
+        document.getElementById('myDiv').innerHTML = text.split('').reverse().join('');
+    "><br><br>
+
+    <!-- Button 5: Show a Random Number -->
+    <input type="button" value="Show a Random Number" onclick="
+        let randNum = Math.floor(Math.random() * 100) + 1;
+        document.getElementById('myDiv').innerHTML = 'Random number: ' + randNum;
+    "><br><br>
+
+    <!-- Button 6: Change Background Color -->
+    <input type="button" value="Change Background Color" onclick="
+        document.body.style.backgroundColor = '#f0f8ff';
+    "><br><br>
+
+    <!-- Button 7: Clear the Text -->
+    <input type="button" value="Clear Text" onclick="
+        document.getElementById('myDiv').innerHTML = '';
+    "><br><br>
+
+    <!-- Button 8: Say Goodbye -->
+    <input type="button" value="Say Goodbye" onclick="
+        document.getElementById('myDiv').innerHTML = 'Goodbye! Have a great day!';
+    "><br><br>
+
+</body>
+</html>
