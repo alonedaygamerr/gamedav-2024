@@ -1,1 +1,21 @@
-<h1>t1a10-loops-dallas</h1>
+<h2 align="center">TLA®-100ps-by-Fred</h2>
+<a href="#">Good reference to JavaScript Loops</a><br>
+<h4> Example input/output code</h4>
+
+<h4> Example working code</h4>
+Max loops: <input id="myNum01" type="number" value="4"><br>
+<input type="button" value="Basic For loop with Decisions" onclick="runLoop()">
+<div id="myDiv01">...</div>
+
+<script>
+function runLoop() {
+    let myTemp = "";
+    let myMax = parseInt(document.getElementById('myNum01').value);
+    
+    for (let myLoop = 0; myLoop < myMax; myLoop++) {
+        myTemp += 'Cool! Loop number: ' + myLoop + '<br>';
+    }
+    
+    document.getElementById('myDiv01').innerHTML = myTemp;
+}
+</script>
