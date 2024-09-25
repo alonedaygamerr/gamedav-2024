@@ -1,21 +1,97 @@
-<h2 align="center">t1a10-loops-dallas</h2>
-<a href="#">Good reference to JavaScript Loops</a><br>
-<h4> Example input/output code</h4>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool JavaScript Loops</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f7;
+            text-align: center;
+            padding: 50px;
+        }
 
-<h4> Example working code</h4>
-Max loops: <input id="myNum01" type="number" value="4"><br>
-<input type="button" value="Basic For loop with Decisions" onclick="runLoop()">
-<div id="myDiv01">...</div>
+        h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
 
-<script>
-function runLoop() {
-    let myTemp = "";
-    let myMax = parseInt(document.getElementById('myNum01').value);
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 80px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="button"]:hover {
+            background-color: #218838;
+        }
+
+        #myDiv01 {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+
+        .loop-output {
+            animation: fadeIn 0.5s ease-in-out;
+            background-color: #f8d7da;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            color: #721c24;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Cool JavaScript Loops</h2>
+    <a href="#">Good reference to JavaScript Loops</a><br>
+
+    <h4>Example input/output code</h4>
+    <h4>Example working code</h4>
+    Max loops: <input id="myNum01" type="number" value="4"><br>
+    <input type="button" value="Basic For Loop with Style" onclick="runLoop()">
     
-    for (let myLoop = 0; myLoop < myMax; myLoop++) {
-        myTemp += 'Cool! Loop number: ' + myLoop + '<br>';
+    <div id="myDiv01">...</div>
+
+    <script>
+    function runLoop() {
+        let myTemp = "";
+        let myMax = parseInt(document.getElementById('myNum01').value);
+
+        for (let myLoop = 0; myLoop < myMax; myLoop++) {
+            myTemp += '<div class="loop-output">Cool! Loop number: ' + myLoop + '</div>';
+        }
+
+        document.getElementById('myDiv01').innerHTML = myTemp;
     }
-    
-    document.getElementById('myDiv01').innerHTML = myTemp;
-}
-</script>
+    </script>
+
+</body>
+</html>
