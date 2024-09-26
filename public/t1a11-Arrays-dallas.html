@@ -1,39 +1,36 @@
-    <h1>t1a11-Arrays-dallas</h1>
-
-    <label for="nameInput">Enter a name:</label>
-    <input type="text" id="nameInput">
-    <button onclick="processName()">Submit</button>
-
-    <p id="output"></p>
+     <h1 align="center">t1a11-Arrays-dallas</h1>
 
     <script>
-        // Define arrays for names and corresponding numbers
-        var nameArray = ["dallas", "jordan", "Bob", "caleb", "jake"];
-        var numberArray = [10, 20, 30, 40, 50];
+        // Global variables
+        let myMax = 6;
+        let myArray = new Array(myMax);
 
-        // Function to process the entered name
-        function processName() {
-            var inputName = document.getElementById("nameInput").value;
-            var output = "";
+        // Function to set array values
+        function setArray() {
+            myArray[0] = 'dallas';
+            myArray[1] = 'jordan';
+            myArray[2] = 'caleb';
+            document.getElementById('myDiv01').innerHTML = 'You set the array';
+        }
 
-            // Find the index of the input name in the nameArray
-            var index = nameArray.indexOf(inputName);
-
-            if (index !== -1) {
-                // If name is found, display corresponding number and a different name from the array
-                var newName = nameArray[(index + 1) % nameArray.length];  // Show the next name in the array
-                output = "You entered: " + inputName + "<br>";
-                output += "Assigned number: " + numberArray[index] + "<br>";
-                output += "your partner: " + newName;
-            } else {
-                // If name is not found, display a message
-                output = "Name not found in the array.";
+        // Function to display array values
+        function showArray() {
+            let output = '';
+            for (let myLoop = 0; myLoop < 3; myLoop++) {
+                output += 'myArray[' + myLoop + '] = ' + myArray[myLoop] + '<br>';
             }
-
-            // Display the output
-            document.getElementById("output").innerHTML = output;
+            document.getElementById('myDiv01').innerHTML = output;
         }
     </script>
+
+    <!-- Input and buttons -->
+    Input: <input type="text" id="myFirstName" value="dallas"><br>
+
+    <input type="button" value="Set Array" onclick="setArray()">
+    <input type="button" value="Show Array" onclick="showArray()"><br>
+
+    <!-- Output div -->
+    <div id="myDiv01">..</div>
 
 </body>
 </html>
