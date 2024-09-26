@@ -1,4 +1,62 @@
-     <h1 align="center">t1a11-Arrays-dallas</h1>
+ <title>t1a11-Arrays-dallas</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+        }
+
+        input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        #myDiv01 {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e7f3e7;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            display: inline-block;
+            font-size: 1.2em;
+            width: 60%;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>t1a11-Arrays-dallas</h1>
 
     <script>
         // Global variables
@@ -10,7 +68,7 @@
             myArray[0] = 'dallas';
             myArray[1] = 'jordan';
             myArray[2] = 'caleb';
-            document.getElementById('myDiv01').innerHTML = 'You set the array';
+            document.getElementById('myDiv01').innerHTML = 'You set the array successfully!';
         }
 
         // Function to display array values
@@ -24,7 +82,8 @@
     </script>
 
     <!-- Input and buttons -->
-    Input: <input type="text" id="myFirstName" value="dallas"><br>
+    <label for="myFirstName">Input: </label>
+    <input type="text" id="myFirstName" value="dallas"><br>
 
     <input type="button" value="Set Array" onclick="setArray()">
     <input type="button" value="Show Array" onclick="showArray()"><br>
