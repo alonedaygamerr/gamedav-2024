@@ -1,1 +1,18 @@
+  <h1>Simple Array Example</h1>
 
+    <p id="arrayOutput"></p>
+
+    <script>
+        
+        var Array = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
+
+        var output = "Array elements: <br>";
+        for (var i = 0; i < Array.length; i++) {
+            output += Array[i] + "<br>";
+        }
+
+        document.getElementById("arrayOutput").innerHTML = output;
+    </script>
+
+</body>
+</html>
