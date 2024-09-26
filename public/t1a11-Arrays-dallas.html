@@ -1,22 +1,37 @@
- <h1>t1a11-Arrays-dallas</h1>
+    <h1>t1a11-Arrays-dallas</h1>
 
-    <button onclick="displayArray()">Show Array</button>
+    <label for="nameInput">Enter a name:</label>
+    <input type="text" id="nameInput">
+    <button onclick="processName()">Submit</button>
 
-    <p id="arrayOutput"></p>
+    <p id="output"></p>
 
     <script>
-        // Define the array
-        var Array = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
+        // Define arrays for names and corresponding numbers
+        var nameArray = ["John", "Alice", "Bob", "Diana", "Charlie"];
+        var numberArray = [10, 20, 30, 40, 50];
 
-        // Function to display array on button click
-        function displayArray() {
-            var output = "Array elements: <br>";
-            for (var i = 0; i < Array.length; i++) {
-                output += Array[i] + "<br>";
+        // Function to process the entered name
+        function processName() {
+            var inputName = document.getElementById("nameInput").value;
+            var output = "";
+
+            // Find the index of the input name in the nameArray
+            var index = nameArray.indexOf(inputName);
+
+            if (index !== -1) {
+                // If name is found, display corresponding number and a different name from the array
+                var newName = nameArray[(index + 1) % nameArray.length];  // Show the next name in the array
+                output = "You entered: " + inputName + "<br>";
+                output += "Assigned number: " + numberArray[index] + "<br>";
+                output += "Displaying different name: " + newName;
+            } else {
+                // If name is not found, display a message
+                output = "Name not found in the array.";
             }
 
-            // Display the output in the paragraph
-            document.getElementById("arrayOutput").innerHTML = output;
+            // Display the output
+            document.getElementById("output").innerHTML = output;
         }
     </script>
 
