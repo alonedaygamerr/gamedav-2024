@@ -1,17 +1,23 @@
-  <h1>t1a11-Arrays-dallas</h1>
+ <h1>t1a11-Arrays-dallas</h1>
+
+    <button onclick="displayArray()">Show Array</button>
 
     <p id="arrayOutput"></p>
 
     <script>
-        
+        // Define the array
         var Array = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
 
-        var output = "Array elements: <br>";
-        for (var i = 0; i < Array.length; i++) {
-            output += Array[i] + "<br>";
-        }
+        // Function to display array on button click
+        function displayArray() {
+            var output = "Array elements: <br>";
+            for (var i = 0; i < Array.length; i++) {
+                output += Array[i] + "<br>";
+            }
 
-        document.getElementById("arrayOutput").innerHTML = output;
+            // Display the output in the paragraph
+            document.getElementById("arrayOutput").innerHTML = output;
+        }
     </script>
 
 </body>
