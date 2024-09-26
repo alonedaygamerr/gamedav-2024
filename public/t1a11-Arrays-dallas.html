@@ -68,25 +68,53 @@
             myArray[0] = 'dallas';
             myArray[1] = 'jordan';
             myArray[2] = 'caleb';
+            myArray[3] = 'sarah';
+            myArray[4] = 'michael';
+            myArray[5] = 'jessica';
             document.getElementById('myDiv01').innerHTML = 'You set the array successfully!';
         }
 
-        // Function to display array values
+        // Function to display full array
         function showArray() {
-            let output = '';
-            for (let myLoop = 0; myLoop < 3; myLoop++) {
+            let output = 'Full Array:<br>';
+            for (let myLoop = 0; myLoop < myMax; myLoop++) {
                 output += 'myArray[' + myLoop + '] = ' + myArray[myLoop] + '<br>';
             }
             document.getElementById('myDiv01').innerHTML = output;
         }
+
+        // Function to show the first item
+        function showFirstItem() {
+            document.getElementById('myDiv01').innerHTML = 'First item: ' + myArray[0];
+        }
+
+        // Function to show the last item
+        function showLastItem() {
+            document.getElementById('myDiv01').innerHTML = 'Last item: ' + myArray[myMax - 1];
+        }
+
+        // Function to reverse the array
+        function reverseArray() {
+            myArray.reverse();
+            document.getElementById('myDiv01').innerHTML = 'Array reversed!';
+        }
+
+        // Function to clear/reset the array
+        function resetArray() {
+            for (let i = 0; i < myMax; i++) {
+                myArray[i] = undefined;
+            }
+            document.getElementById('myDiv01').innerHTML = 'Array has been reset!';
+        }
     </script>
 
     <!-- Input and buttons -->
-    <label for="myFirstName">Input: </label>
-    <input type="text" id="myFirstName" value="dallas"><br>
-
     <input type="button" value="Set Array" onclick="setArray()">
-    <input type="button" value="Show Array" onclick="showArray()"><br>
+    <input type="button" value="Show Full Array" onclick="showArray()">
+    <input type="button" value="Show First Item" onclick="showFirstItem()">
+    <input type="button" value="Show Last Item" onclick="showLastItem()">
+    <input type="button" value="Reverse Array" onclick="reverseArray()">
+    <input type="button" value="Reset Array" onclick="resetArray()"><br>
 
     <!-- Output div -->
     <div id="myDiv01">..</div>
