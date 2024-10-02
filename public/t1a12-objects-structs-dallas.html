@@ -1,39 +1,148 @@
-<h2 align=center>t1a12-objects-structs-dallas</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>t1a12-objects-structs-dallas</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    h2 {
+      font-family: 'Helvetica', sans-serif;
+      color: #2c3e50;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 1.5px;
+      background: linear-gradient(to right, #3498db, #2ecc71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #2ecc71;
+    }
+    
+    pre {
+      background-color: #ecf0f1;
+      border-left: 5px solid #3498db;
+      padding: 15px;
+      text-align: left;
+      width: 70%;
+      margin: 0 auto 20px auto;
+      border-radius: 8px;
+      font-size: 16px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    input[type="text"] {
+      padding: 10px;
+      border: 2px solid #95a5a6;
+      border-radius: 5px;
+      width: 300px;
+      margin-bottom: 15px;
+    }
+    
+    input[type="button"] {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    input[type="button"]:hover {
+      background-color: #2ecc71;
+    }
+    
+    #myDiv1 {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #ecf0f1;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #34495e;
+      display: none;
+    }
 
-<a href ="">Good reference to Javascript Objects</a><br>
+    /* Animation */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
 
-objects are stored named variables
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
 
-<h4> Example Objects code</h4>
-<pre>
-  let myperson = {
-  "FirstName": "John",
-  "lastName": "doe",
-  "age" : 50,
-  "eyeColor" : "blue"
-</pre>
+  <h2 align="center">t1a12-objects-structs-dallas</h2>
 
-<h4>Example Working Object Code</h4>
-<p>Nothing: <input type="text" id="myText1" value="Useless at the moment"></p>
-<input type="button" value="Example Object Set and Show" onClick="showPersonInfo()">
+  <a href="#">Good reference to JavaScript Objects</a><br>
 
-<div id="myDiv1">...</div>
+  <p>Objects are stored as named variables</p>
 
-<script>
-function showPersonInfo() {
-  let myPerson = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 50,
-    eyeColor: "blue"
-  };
+  <h4>Example Objects Code</h4>
+  <pre>
+    let myPerson = {
+      firstName: "John",
+      lastName: "Doe",
+      age: 50,
+      eyeColor: "blue"
+    };
+  </pre>
 
-  let output = `<strong>myPerson Object has properties:</strong><br>`;
-  output += `First Name: ${myPerson.firstName}<br>`;
-  output += `Last Name: ${myPerson.lastName}<br>`;
-  output += `Age: ${myPerson.age}<br>`;
-  output += `Eye Color: ${myPerson.eyeColor}<br>`;
+  <h4>Example Working Object Code</h4>
+  <p>Nothing: <input type="text" id="myText1" value="Useless at the moment"></p>
+  <input type="button" value="Example Object Set and Show" onClick="showPersonInfo()">
 
-  document.getElementById("myDiv1").innerHTML = output;
-}
-</script>
+  <div id="myDiv1">...</div>
+
+  <script>
+    function showPersonInfo() {
+      let myPerson = {
+        firstName: "John",
+        lastName: "Doe",
+        age: 50,
+        eyeColor: "blue"
+      };
+
+      let output = `<strong>myPerson Object has properties:</strong><br>`;
+      output += `First Name: ${myPerson.firstName}<br>`;
+      output += `Last Name: ${myPerson.lastName}<br>`;
+      output += `Age: ${myPerson.age}<br>`;
+      output += `Eye Color: ${myPerson.eyeColor}<br>`;
+
+      const myDiv = document.getElementById("myDiv1");
+      myDiv.innerHTML = output;
+      
+      // Apply fade-in animation
+      myDiv.style.display = 'block';
+      myDiv.classList.add("fade-in");
+    }
+  </script>
+
+</body>
+</html>
