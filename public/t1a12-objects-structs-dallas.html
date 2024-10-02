@@ -1,1 +1,39 @@
+<h2 align=center>t1a12-objects-structs-dallas</h2>
 
+<a href ="">Good reference to Javascript Objects</a><br>
+
+objects are stored named variables
+
+<h4> Example Objects code</h4>
+<pre>
+  let myperson = {
+  "FirstName": "John",
+  "lastName": "doe",
+  "age" : 50,
+  "eyeColor" : "blue"
+</pre>
+
+<h4>Example Working Object Code</h4>
+<p>Nothing: <input type="text" id="myText1" value="Useless at the moment"></p>
+<input type="button" value="Example Object Set and Show" onClick="showPersonInfo()">
+
+<div id="myDiv1">...</div>
+
+<script>
+function showPersonInfo() {
+  let myPerson = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 50,
+    eyeColor: "blue"
+  };
+
+  let output = `<strong>myPerson Object has properties:</strong><br>`;
+  output += `First Name: ${myPerson.firstName}<br>`;
+  output += `Last Name: ${myPerson.lastName}<br>`;
+  output += `Age: ${myPerson.age}<br>`;
+  output += `Eye Color: ${myPerson.eyeColor}<br>`;
+
+  document.getElementById("myDiv1").innerHTML = output;
+}
+</script>
