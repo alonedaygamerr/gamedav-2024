@@ -1,13 +1,80 @@
-<h1> align=center>tqa07-functions-dallas.html</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tqa07-functions-dallas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #3498db;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            width: 200px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+        input[type="button"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="button"]:hover {
+            background-color: #2ecc71;
+        }
+        #myDiv01 {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #34495e;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
 
-<script>
-  function myVar(myIn){
-    retuen document.getElementById(myIn)
-  }
-</script>
-Input:<input type=text id="myFirstName" value+"fred">
-<input type+buttion value="Show on page" on click='{
+    <h1 align="center">tqa07-functions-dallas</h1>
 
-  myVar('myDiv01.innerHTML = 'Your name is ' + my Var('myFirstName').value
-}">
-<div> id="mydiv01">...</div>  
+    <!-- Input for First Name -->
+    <p>Input: <input type="text" id="myFirstName" value="Fred"></p>
+
+    <!-- Button to show the result -->
+    <input type="button" value="Show on Page" onclick="showName()">
+
+    <!-- Div to display the result -->
+    <div id="myDiv01">...</div>
+
+    <script>
+        // Function to get element by ID
+        function myVar(myIn) {
+            return document.getElementById(myIn);
+        }
+
+        // Function to show the name in the div
+        function showName() {
+            let firstName = myVar('myFirstName').value; // Get the input value
+            myVar('myDiv01').innerHTML = 'Your name is ' + firstName; // Show the result in the div
+        }
+    </script>
+
+</body>
+</html>
