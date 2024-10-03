@@ -1,0 +1,132 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            color: white;
+        }
+
+        canvas {
+            border: 2px solid #ffffff;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Snake Game</h1>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gridSize = 20;
+        const tileCount = 20;
+        canvas.width = canvas.height = gridSize * tileCount;
+
+        let snake = [{ x: 10, y: 10 }];
+        let apple = { x: 15, y: 15 };
+        let velocity = { x: 0, y: 0 };
+        let score = 0;
+        let gameSpeed = 100;
+
+        document.addEventListener('keydown', changeDirection);
+
+        function gameLoop() {
+            if (isGameOver()) {
+                alert('Game Over! Your score: ' + score);
+                document.location.reload();
+            }
+
+            moveSnake();
+            if (isAppleEaten()) {
+                score++;
+                apple = spawnApple();
+                snake.push({}); // Add a new segment to the snake
+            }
+
+            drawGame();
+            setTimeout(gameLoop, gameSpeed);
+        }
+
+        function moveSnake() {
+            const head = { x: snake[0].x + velocity.x, y: snake[0].y + velocity.y };
+            snake.unshift(head);
+            snake.pop(); // Remove the last segment
+        }
+
+        function changeDirection(event) {
+            switch (event.key) {
+                case 'ArrowUp':
+                    if (velocity.y === 0) velocity = { x: 0, y: -1 };
+                    break;
+                case 'ArrowDown':
+                    if (velocity.y === 0) velocity = { x: 0, y: 1 };
+                    break;
+                case 'ArrowLeft':
+                    if (velocity.x === 0) velocity = { x: -1, y: 0 };
+                    break;
+                case 'ArrowRight':
+                    if (velocity.x === 0) velocity = { x: 1, y: 0 };
+                    break;
+            }
+        }
+
+        function isAppleEaten() {
+            return snake[0].x === apple.x && snake[0].y === apple.y;
+        }
+
+        function spawnApple() {
+            return {
+                x: Math.floor(Math.random() * tileCount),
+                y: Math.floor(Math.random() * tileCount)
+            };
+        }
+
+        function isGameOver() {
+            const head = snake[0];
+            // Check wall collisions
+            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+                return true;
+            }
+            // Check self-collision
+            for (let i = 1; i < snake.length; i++) {
+                if (snake[i].x === head.x && snake[i].y === head.y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function drawGame() {
+            // Clear the canvas
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the apple
+            ctx.fillStyle = 'red';
+            ctx.fillRect(apple.x * gridSize, apple.y * gridSize, gridSize, gridSize);
+
+            // Draw the snake
+            ctx.fillStyle = 'lime';
+            snake.forEach(segment => {
+                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
+            });
+
+            // Draw the score
+            ctx.fillStyle = 'white';
+            ctx.fillText('Score: ' + score, 10, 20);
+        }
+
+        // Start the game loop
+        gameLoop();
+    </script>
+</body>
+</html>
