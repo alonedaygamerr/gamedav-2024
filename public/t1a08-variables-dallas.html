@@ -1,22 +1,114 @@
- align=center>t1a08-variables-dallas<h1>
-F2
-w
-W3Schools link to variables <a href="https://www.w3schools.com/js/js_variables.asp"> here</a><br>
-Input 1:<input type=text id="myIn01" value="5" ><br>
-Input 2:<input type=text id="myIn02" value="7">‹br>
-‹input type=button value="Add and fix" onclick="{
-myTotal = document.getElementById ('myIn®1'). value + document getElementById ('myIn02'). value
-document.getElementById( 'myDiv01'). innerHTML = 'Your answer is' + myTotal
-ド”>
-‹div id="myDiv01">... </div>
-Copy and fix. parseInt() or parseFloat) try not to use var use let instead or const<br›
-‹input type=button value="Add2 and fix" onclick="{
-let myX = document.getElementById( 'myIn01'). value
-let myY = document.getElementById( 'myIn02'). value
-let myTotal = myX + myY
-document.getElementById( 'myDiv01'). innerHTML = 'Your answer is ' + myTotal
-}"*brx‹br>
-Other programming languages use defined variables < pre>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>t1a08-variables-dallas</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #3498db;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 1.5px;
+      font-size: 2em;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 2px solid #95a5a6;
+      border-radius: 5px;
+      width: 150px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    input[type="button"] {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="button"]:hover {
+      background-color: #2ecc71;
+    }
+
+    #myDiv01 {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #ecf0f1;
+      border-radius: 5px;
+      font-size: 18px;
+      color: #34495e;
+      font-weight: bold;
+    }
+
+    pre {
+      background-color: #ecf0f1;
+      padding: 15px;
+      text-align: left;
+      width: 70%;
+      margin: 20px auto;
+      border-radius: 8px;
+      font-size: 16px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1 align="center">t1a08-variables-dallas</h1>
+
+  <h2>W3Schools link to variables <a href="https://www.w3schools.com/js/js_variables.asp" target="_blank">here</a></h2>
+
+  <p>Input 1: <input type="text" id="myIn01" value="5"></p>
+  <p>Input 2: <input type="text" id="myIn02" value="7"></p>
+
+  <input type="button" value="Add and Fix" onclick="addAndFix()">
+  <input type="button" value="Add2 and Fix" onclick="add2AndFix()">
+
+  <div id="myDiv01">...</div>
+
+  <script>
+    function addAndFix() {
+      let myX = parseFloat(document.getElementById('myIn01').value);
+      let myY = parseFloat(document.getElementById('myIn02').value);
+      let myTotal = myX + myY;
+
+      document.getElementById('myDiv01').innerHTML = 'Your answer is: ' + myTotal;
+    }
+
+    function add2AndFix() {
+      let myX = parseFloat(document.getElementById('myIn01').value);
+      let myY = parseFloat(document.getElementById('myIn02').value);
+      let myTotal = myX + myY;
+
+      document.getElementById('myDiv01').innerHTML = 'Your answer is: ' + myTotal;
+    }
+  </script>
+
+  <h4>Other programming languages use defined variables</h4>
+  <pre>
 boolean
-int8 or byte int double float char string
-</ pre>
+int8 or byte
+int
+double
+float
+char
+string
+  </pre>
+
+</body>
+</html>
