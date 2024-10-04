@@ -1,57 +1,37 @@
-<h1 align="center"> t1a13-json-dallas </h1>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-        }
-        input[type="text"] {
-            padding: 10px;
-            width: 300px;
-            margin-bottom: 20px;
-        }
-        img {
-            max-width: 500px;
-            max-height: 500px;
-            margin-top: 20px;
-        }
-        #image-container {
-            display: none;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h1 align="center">t1a13-json-dallas</h1>
-    
-    <div class="container">
-        <input type="text" id="json-url" placeholder="Enter JSON link for image" />
-        <button onclick="loadImage()">Load Image</button>
-        
-        <div id="image-container">
-            <img id="image" src="" alt="Image will be displayed here" />
-        </div>
-    </div>
+<h1 align="center">t1a13-json-dallas</h1>
+<script>
+function myShowJSON(myIn) {
+    document.getElementById('myDiv1').innerHTML = `Sent: ${myIn}`;
+}
 
-    <script>
-        function loadImage() {
-            const jsonUrl = document.getElementById('json-url').value;
-            
-            fetch(jsonUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const imageUrl = data.imageUrl; // Assuming the JSON contains a field called 'imageUrl'
-                    document.getElementById('image').src = imageUrl;
-                    document.getElementById('image-container').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error fetching the image:', error);
-                });
-        }
-    </script>
-</body>
-</html>
+function fetchJSON() {
+    const url = document.getElementById('myText1').value;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('myDiv1').innerHTML = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+            console.error('Error fetching JSON:', error);
+            document.getElementById('myDiv1').innerHTML = 'Error fetching JSON';
+        });
+}
+</script>
+
+Explanation of JSON compared to JavaScript objects formatted for this textarea: <br>
+<textarea cols="70" rows="5">
+JSON is a string representation of an object (data interchange format) and must follow strict syntax rules like using double quotes around keys and strings. JavaScript objects are more flexible in syntax but need to be converted to or from JSON when working with APIs or data storage.
+</textarea>
+<br><br>
+
+Enter a JSON returning URL: 
+<input type="text" id="myText1" value="https://randomfox.ca/floof/">
+<input type="button" value="Show JSON" onclick="fetchJSON()"><br><br>
+
+<select size="1" onchange="document.getElementById('myText1').value = this.value;">
+    <option value="https://randomfox.ca/floof/">randomfox</option>
+    <option value="https://dog.ceo/api/breeds/image/random">dog.ceo</option>
+</select><br><br>
+
+You make the JSON show up in the DIV:<br><br> 
+<div id="myDiv1">...</div>
