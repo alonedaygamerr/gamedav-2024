@@ -1,0 +1,89 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Test</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #timeButtons button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #clickArea {
+            margin: 20px;
+            padding: 20px;
+            background-color: #4CAF50;
+            border: 2px solid white;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clicker Test</h1>
+    
+    <div id="timeButtons">
+        <button onclick="startGame(1)">1 Second</button>
+        <button onclick="startGame(5)">5 Seconds</button>
+        <button onclick="startGame(10)">10 Seconds</button>
+        <button onclick="startGame(60)">60 Seconds</button>
+    </div>
+
+    <div id="clickArea" onclick="countClick()">Click here as fast as you can!</div>
+
+    <div id="result"></div>
+
+    <script>
+        let clickCount = 0;
+        let timer = null;
+
+        function startGame(seconds) {
+            clickCount = 0;
+            document.getElementById('clickArea').style.display = 'block';
+            document.getElementById('result').textContent = '';
+            document.getElementById('clickArea').textContent = "Click here as fast as you can!";
+
+            // Set a timer for the game duration
+            clearTimeout(timer);
+            timer = setTimeout(endGame, seconds * 1000);
+
+            // Reset the click count
+        }
+
+        function countClick() {
+            clickCount++;
+            document.getElementById('clickArea').textContent = "Clicks: " + clickCount;
+        }
+
+        function endGame() {
+            document.getElementById('clickArea').style.display = 'none';
+            document.getElementById('result').textContent = `Time's up! You clicked ${clickCount} times.`;
+        }
+    </script>
+</body>
+</html>
