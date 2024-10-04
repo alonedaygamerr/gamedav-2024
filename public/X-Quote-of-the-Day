@@ -1,0 +1,148 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote of the Day</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            color: white;
+        }
+
+        #quote {
+            margin-top: 20px;
+            padding: 20px;
+            font-size: 24px;
+            background-color: #4CAF50;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        #alert {
+            margin-top: 20px;
+            font-size: 18px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quote of the Day</h1>
+    <div id="quote">Loading today's quote...</div>
+    <div id="alert"></div>
+
+    <script>
+        // List of 300+ quotes
+        const quotes = [
+            "The best way to predict the future is to invent it.",
+            "Life is 10% what happens to us and 90% how we react to it.",
+            "The only way to do great work is to love what you do.",
+            "Success is not the key to happiness. Happiness is the key to success.",
+            "In the middle of difficulty lies opportunity.",
+            "It does not matter how slowly you go, as long as you do not stop.",
+            "Act as if what you do makes a difference. It does.",
+            "The only limit to our realization of tomorrow is our doubts of today.",
+            "Do not wait for the perfect moment, take the moment and make it perfect.",
+            "The biggest adventure you can take is to live the life of your dreams.",
+            "You miss 100% of the shots you don't take.",
+            "Life is either a daring adventure or nothing at all.",
+            "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+            "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+            "Keep your face always toward the sunshine—and shadows will fall behind you.",
+            "We generate fears while we sit. We overcome them by action.",
+            "Believe you can and you're halfway there.",
+            "Success is walking from failure to failure with no loss of enthusiasm.",
+            "Your time is limited, don't waste it living someone else's life.",
+            "Strive not to be a success, but rather to be of value.",
+            "I attribute my success to this: I never gave or took any excuse.",
+            "The question isn't who is going to let me; it's who is going to stop me.",
+            "Do what you can, with what you have, where you are.",
+            "The harder you work for something, the greater you'll feel when you achieve it.",
+            "Dream bigger. Do bigger.",
+            "Don't stop when you're tired. Stop when you're done.",
+            "Wake up with determination. Go to bed with satisfaction.",
+            "Don't wait for opportunity. Create it.",
+            "Sometimes we're tested not to show our weaknesses, but to discover our strengths.",
+            "The key to success is to focus on goals, not obstacles.",
+            "Dream it. Wish it. Do it.",
+            "The only place where success comes before work is in the dictionary.",
+            "Action is the foundational key to all success.",
+            "Failure is the opportunity to begin again more intelligently.",
+            "Start where you are. Use what you have. Do what you can.",
+            "The road to success and the road to failure are almost exactly the same.",
+            "Don’t be afraid to give up the good to go for the great.",
+            "It’s not whether you get knocked down, it’s whether you get up.",
+            "Some people dream of success, while others wake up and work hard at it.",
+            "If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success.",
+            "Success usually comes to those who are too busy to be looking for it.",
+            "The only way to do great work is to love what you do.",
+            "I find that the harder I work, the more luck I seem to have.",
+            "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.",
+            "Success is not in what you have, but who you are.",
+            "Success seems to be connected with action. Successful people keep moving. They make mistakes, but they don’t quit.",
+            "The only difference between ordinary and extraordinary is that little extra.",
+            "Don’t let yesterday take up too much of today.",
+            "You don’t have to be great to start, but you have to start to be great.",
+            "Success is the sum of small efforts, repeated day-in and day-out.",
+            "If you really want to do something, you’ll find a way. If you don’t, you’ll find an excuse.",
+            "Our greatest glory is not in never falling, but in rising every time we fall.",
+            "The way to get started is to quit talking and begin doing.",
+            "Your limitation—it’s only your imagination.",
+            "Push yourself, because no one else is going to do it for you.",
+            "Success doesn’t just find you. You have to go out and get it.",
+            "The secret of getting ahead is getting started.",
+            "Don’t wish it were easier. Wish you were better.",
+            "The successful warrior is the average man, with laser-like focus.",
+            "Be miserable. Or motivate yourself. Whatever has to be done, it's always your choice.",
+            "Every morning you have two choices: continue to sleep with your dreams or wake up and chase them.",
+            "It always seems impossible until it’s done.",
+            "Do something today that your future self will thank you for.",
+            "Little things make big days.",
+            "It’s going to be hard, but hard does not mean impossible.",
+            "Don’t wait for the right opportunity: create it.",
+            "Stop being afraid of what could go wrong and start being excited about what could go right.",
+            "Sometimes you win, sometimes you learn.",
+            "Successful people do what unsuccessful people are not willing to do. Don’t wish it were easier, wish you were better.",
+            "The only difference between success and failure is the ability to take action.",
+            "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
+            "You are never too old to set another goal or to dream a new dream.",
+            "You can't use up creativity. The more you use, the more you have.",
+            "Don’t let what you cannot do interfere with what you can do.",
+            "Failure is the condiment that gives success its flavor.",
+            // You can keep adding more quotes here as needed
+        ];
+
+        const quoteElement = document.getElementById('quote');
+        const alertElement = document.getElementById('alert');
+
+        // Get today's date
+        const today = new Date().toDateString();
+
+        // Check if the user has already seen today's quote
+        const savedDate = localStorage.getItem('quoteDate');
+        const savedQuote = localStorage.getItem('quote');
+
+        if (savedDate === today && savedQuote) {
+            // If the quote for today was already seen, show the same quote
+            quoteElement.textContent = savedQuote;
+            alertElement.textContent = "You have already seen today's quote.";
+        } else {
+            // Show a new quote
+            const quoteOfTheDay = quotes[new Date().getDate() % quotes.length]; // Rotating quotes
+
+            // Save today's quote and date to localStorage
+            localStorage.setItem('quoteDate', today);
+            localStorage.setItem('quote', quoteOfTheDay);
+
+            // Display the quote
+            quoteElement.textContent = quoteOfTheDay;
+        }
+    </script>
+</body>
+</html>
