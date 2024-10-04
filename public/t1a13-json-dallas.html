@@ -9,7 +9,24 @@ function fetchJSON() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            document.getElementById('myDiv1').innerHTML = JSON.stringify(data, null, 2);
+            // Display JSON in formatted form
+            document.getElementById('myDiv1').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            
+            // Log JSON to console
+            console.log('Fetched JSON:', data);
+            
+            // Count the number of keys if the data is an object
+            if (typeof data === 'object') {
+                const keyCount = Object.keys(data).length;
+                document.getElementById('keyCount').innerHTML = `Number of keys: ${keyCount}`;
+            }
+            
+            // Display specific key if it exists (e.g., 'image')
+            if (data.image) {
+                document.getElementById('specialKey').innerHTML = `<img src="${data.image}" alt="Image from JSON" width="300">`;
+            } else {
+                document.getElementById('specialKey').innerHTML = 'No image found in the JSON.';
+            }
         })
         .catch(error => {
             console.error('Error fetching JSON:', error);
@@ -35,3 +52,5 @@ Enter a JSON returning URL:
 
 You make the JSON show up in the DIV:<br><br> 
 <div id="myDiv1">...</div>
+<div id="keyCount"></div>
+<div id="specialKey"></div>
