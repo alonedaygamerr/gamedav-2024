@@ -10,14 +10,19 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #282c34;
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
+        }
+
+        h1 {
+            margin-bottom: 20px;
         }
 
         canvas {
             border: 2px solid #ffffff;
             background-color: #000;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
@@ -28,38 +33,43 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const gridSize = 20;
-        const tileCount = 20;
+        const tileCount = 25; // Increased grid size for smoother movement
         canvas.width = canvas.height = gridSize * tileCount;
 
-        let snake = [{ x: 10, y: 10 }];
-        let apple = { x: 15, y: 15 };
+        let snake = [{ x: 12, y: 12 }];
+        let apple = spawnApple();
         let velocity = { x: 0, y: 0 };
         let score = 0;
-        let gameSpeed = 100;
+        let gameSpeed = 10;
+        let growing = 0;
 
         document.addEventListener('keydown', changeDirection);
 
         function gameLoop() {
-            if (isGameOver()) {
-                alert('Game Over! Your score: ' + score);
-                document.location.reload();
-            }
-
             moveSnake();
             if (isAppleEaten()) {
                 score++;
+                growing += 2; // Add more length gradually
                 apple = spawnApple();
-                snake.push({}); // Add a new segment to the snake
             }
 
             drawGame();
-            setTimeout(gameLoop, gameSpeed);
+            if (!isGameOver()) {
+                requestAnimationFrame(gameLoop);
+            } else {
+                alert('Game Over! Your score: ' + score);
+                document.location.reload();
+            }
         }
 
         function moveSnake() {
             const head = { x: snake[0].x + velocity.x, y: snake[0].y + velocity.y };
             snake.unshift(head);
-            snake.pop(); // Remove the last segment
+            if (growing > 0) {
+                growing--; // Grow gradually
+            } else {
+                snake.pop(); // Remove the last segment
+            }
         }
 
         function changeDirection(event) {
@@ -107,26 +117,36 @@
 
         function drawGame() {
             // Clear the canvas
-            ctx.fillStyle = 'black';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw the apple
+            // Draw the apple as a glowing circle
             ctx.fillStyle = 'red';
-            ctx.fillRect(apple.x * gridSize, apple.y * gridSize, gridSize, gridSize);
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = 'red';
+            ctx.beginPath();
+            ctx.arc((apple.x * gridSize) + gridSize / 2, (apple.y * gridSize) + gridSize / 2, gridSize / 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+            ctx.shadowBlur = 0; // Disable shadow after apple
 
-            // Draw the snake
-            ctx.fillStyle = 'lime';
+            // Draw the snake with gradient color
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, "lime");
+            gradient.addColorStop(1, "green");
+            ctx.fillStyle = gradient;
             snake.forEach(segment => {
                 ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
             });
 
             // Draw the score
             ctx.fillStyle = 'white';
+            ctx.font = '18px Courier New';
             ctx.fillText('Score: ' + score, 10, 20);
         }
 
         // Start the game loop
-        gameLoop();
+        requestAnimationFrame(gameLoop);
     </script>
 </body>
+</html>
 </html>
