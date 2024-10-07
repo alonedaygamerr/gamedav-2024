@@ -68,7 +68,7 @@
       background-color: #2ecc71;
     }
     
-    #myDiv1 {
+    #myDiv1, #myDiv2 {
       margin-top: 20px;
       padding: 20px;
       background-color: #ecf0f1;
@@ -110,15 +110,38 @@
       firstName: "John",
       lastName: "Doe",
       age: 50,
-      eyeColor: "blue"
+      eyeColor: "blue",
+      hobbies: ["reading", "cycling", "hiking"],
+      address: {
+        street: "123 Elm St",
+        city: "Dallas",
+        state: "TX"
+      }
     };
   </pre>
 
   <h4>Example Working Object Code</h4>
   <p>Nothing: <input type="text" id="myText1" value="Useless at the moment"></p>
-  <input type="button" value="Example Object Set and Show" onClick="showPersonInfo()">
+  <input type="button" value="Show Person Info" onClick="showPersonInfo()">
+  <input type="button" value="Hide Person Info" onClick="hidePersonInfo()">
 
   <div id="myDiv1">...</div>
+
+  <h4>Another Object Example (Car)</h4>
+  <pre>
+    let myCar = {
+      brand: "Tesla",
+      model: "Model S",
+      year: 2023,
+      color: "Red",
+      owner: "John Doe"
+    };
+  </pre>
+
+  <input type="button" value="Show Car Info" onClick="showCarInfo()">
+  <input type="button" value="Hide Car Info" onClick="hideCarInfo()">
+
+  <div id="myDiv2">...</div>
 
   <script>
     function showPersonInfo() {
@@ -126,7 +149,13 @@
         firstName: "John",
         lastName: "Doe",
         age: 50,
-        eyeColor: "blue"
+        eyeColor: "blue",
+        hobbies: ["reading", "cycling", "hiking"],
+        address: {
+          street: "123 Elm St",
+          city: "Dallas",
+          state: "TX"
+        }
       };
 
       let output = `<strong>myPerson Object has properties:</strong><br>`;
@@ -134,6 +163,8 @@
       output += `Last Name: ${myPerson.lastName}<br>`;
       output += `Age: ${myPerson.age}<br>`;
       output += `Eye Color: ${myPerson.eyeColor}<br>`;
+      output += `Hobbies: ${myPerson.hobbies.join(', ')}<br>`;
+      output += `Address: ${myPerson.address.street}, ${myPerson.address.city}, ${myPerson.address.state}<br>`;
 
       const myDiv = document.getElementById("myDiv1");
       myDiv.innerHTML = output;
@@ -142,7 +173,40 @@
       myDiv.style.display = 'block';
       myDiv.classList.add("fade-in");
     }
+
+    function hidePersonInfo() {
+      const myDiv = document.getElementById("myDiv1");
+      myDiv.style.display = 'none';
+    }
+
+    function showCarInfo() {
+      let myCar = {
+        brand: "Tesla",
+        model: "Model S",
+        year: 2023,
+        color: "Red",
+        owner: "John Doe"
+      };
+
+      let output = `<strong>myCar Object has properties:</strong><br>`;
+      output += `Brand: ${myCar.brand}<br>`;
+      output += `Model: ${myCar.model}<br>`;
+      output += `Year: ${myCar.year}<br>`;
+      output += `Color: ${myCar.color}<br>`;
+      output += `Owner: ${myCar.owner}<br>`;
+
+      const myDiv = document.getElementById("myDiv2");
+      myDiv.innerHTML = output;
+      
+      // Apply fade-in animation
+      myDiv.style.display = 'block';
+      myDiv.classList.add("fade-in");
+    }
+
+    function hideCarInfo() {
+      const myDiv = document.getElementById("myDiv2");
+      myDiv.style.display = 'none';
+    }
   </script>
 
 </body>
-</html>
