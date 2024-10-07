@@ -5,27 +5,39 @@
 </head>
 <body>
 
-  <h2>Our Products</h2>
-  <table id="productTable" border="1" cellpadding="10">
-    <thead>
-      <tr>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Categories</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Product rows will be inserted here -->
-    </tbody>
-  </table>
+  <!-- Buttons to show content -->
+  <div>
+    <button onclick="showProducts()">Show Products</button>
+    <button onclick="showProfile()">Show User Profile</button>
+  </div>
 
   <hr>
 
-  <h2>User Profile</h2>
-  <p id="name"></p>
-  <p id="age"></p>
-  <h4>Hobbies</h4>
-  <ul id="hobbiesList"></ul>
+  <!-- Products Table Section -->
+  <div id="productsSection" style="display:none;">
+    <h2>t1a14-Objects-and-Arrays-dallas</h2>
+    <table id="productTable" border="1" cellpadding="10">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Categories</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Product rows will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- User Profile Section -->
+  <div id="profileSection" style="display:none;">
+    <h2>User Profile</h2>
+    <p id="name"></p>
+    <p id="age"></p>
+    <h4>Hobbies</h4>
+    <ul id="hobbiesList"></ul>
+  </div>
 
   <script>
     // Array of products (each product is an object)
@@ -92,9 +104,19 @@
       });
     }
 
-    // Call the functions to display products and profile when the page loads
-    displayProducts();
-    displayProfile();
+    // Function to show Products section and hide Profile section
+    function showProducts() {
+      document.getElementById("productsSection").style.display = "block";
+      document.getElementById("profileSection").style.display = "none";
+      displayProducts(); // Display products in the table
+    }
+
+    // Function to show Profile section and hide Products section
+    function showProfile() {
+      document.getElementById("profileSection").style.display = "block";
+      document.getElementById("productsSection").style.display = "none";
+      displayProfile(); // Display the user profile
+    }
   </script>
 
 </body>
