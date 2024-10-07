@@ -33,15 +33,15 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const gridSize = 20;
-        const tileCount = 25; // Increased grid size for smoother movement
+        const tileCount = 25;
         canvas.width = canvas.height = gridSize * tileCount;
 
         let snake = [{ x: 12, y: 12 }];
         let apple = spawnApple();
         let velocity = { x: 0, y: 0 };
         let score = 0;
-        let gameSpeed = 10;
         let growing = 0;
+        let gameSpeed = 200; // Slower movement (200 milliseconds delay)
 
         document.addEventListener('keydown', changeDirection);
 
@@ -49,13 +49,13 @@
             moveSnake();
             if (isAppleEaten()) {
                 score++;
-                growing += 2; // Add more length gradually
+                growing += 2;
                 apple = spawnApple();
             }
 
             drawGame();
             if (!isGameOver()) {
-                requestAnimationFrame(gameLoop);
+                setTimeout(gameLoop, gameSpeed); // Slower frame rate by increasing delay
             } else {
                 alert('Game Over! Your score: ' + score);
                 document.location.reload();
@@ -66,9 +66,9 @@
             const head = { x: snake[0].x + velocity.x, y: snake[0].y + velocity.y };
             snake.unshift(head);
             if (growing > 0) {
-                growing--; // Grow gradually
+                growing--;
             } else {
-                snake.pop(); // Remove the last segment
+                snake.pop();
             }
         }
 
@@ -102,11 +102,9 @@
 
         function isGameOver() {
             const head = snake[0];
-            // Check wall collisions
             if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
                 return true;
             }
-            // Check self-collision
             for (let i = 1; i < snake.length; i++) {
                 if (snake[i].x === head.x && snake[i].y === head.y) {
                     return true;
@@ -116,10 +114,9 @@
         }
 
         function drawGame() {
-            // Clear the canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw the apple as a glowing circle
+            // Draw the apple
             ctx.fillStyle = 'red';
             ctx.shadowBlur = 10;
             ctx.shadowColor = 'red';
@@ -127,7 +124,7 @@
             ctx.arc((apple.x * gridSize) + gridSize / 2, (apple.y * gridSize) + gridSize / 2, gridSize / 2, 0, Math.PI * 2);
             ctx.fill();
             ctx.closePath();
-            ctx.shadowBlur = 0; // Disable shadow after apple
+            ctx.shadowBlur = 0;
 
             // Draw the snake with gradient color
             const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
@@ -144,9 +141,7 @@
             ctx.fillText('Score: ' + score, 10, 20);
         }
 
-        // Start the game loop
-        requestAnimationFrame(gameLoop);
+        gameLoop();
     </script>
 </body>
-</html>
 </html>
