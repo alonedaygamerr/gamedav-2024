@@ -51,7 +51,7 @@
             height: 100px;
         }
 
-        #myDiv1, #keyCount, #specialKey {
+        #myDiv1, #keyCount, #specialKey, #importantDiv {
             margin-top: 20px;
             padding: 15px;
             background-color: white;
@@ -108,6 +108,23 @@ function fetchJSON() {
             } else {
                 document.getElementById('specialKey').innerHTML = 'No image found in the JSON.';
             }
+            
+            // Display the most important key like joke, title, or description
+            let importantData = '';
+            if (data.joke) {
+                importantData = `Joke: ${data.joke}`;
+            } else if (data.fact) {
+                importantData = `Fact: ${data.fact}`;
+            } else if (data.name) {
+                importantData = `Name: ${data.name}`;
+            } else if (data.title) {
+                importantData = `Title: ${data.title}`;
+            } else if (data.message) {
+                importantData = `Message: ${data.message}`;
+            } else {
+                importantData = 'No key information found.';
+            }
+            document.getElementById('importantDiv').innerHTML = `<strong>Important Info:</strong> ${importantData}`;
         })
         .catch(error => {
             console.error('Error fetching JSON:', error);
@@ -131,16 +148,14 @@ Enter a JSON returning URL:
     <option value="https://dog.ceo/api/breeds/image/random">dog.ceo</option>
     <option value="https://api.spacexdata.com/v4/launches/latest">spacexdata</option>
     <option value="https://api.chucknorris.io/jokes/random">chucknorris</option>
-    <option value="https://api.apis.guru/v2/list.json">spacexdata</option>
-    <option value="https://api.chucknorris.io/jokes/random">spacexdata</option>
-    <option value="https://api.chucknorris.io/jokes/random">spacexdata</option>
-
+    <option value="https://api.apis.guru/v2/list.json">apis.guru</option>
 </select><br><br>
 
 You make the JSON show up in the DIV:<br><br> 
 <div id="myDiv1">...</div>
 <div id="keyCount"></div>
 <div id="specialKey"></div>
+<div id="importantDiv"></div>
 
 <footer>&copy; 2024 - JSON Fetcher Example</footer>
 
