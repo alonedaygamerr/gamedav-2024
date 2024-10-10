@@ -1,1 +1,63 @@
+<body>
 
+    <h1>Welcome to Dallas Events</h1>
+
+    <p>Explore the various events happening in Dallas!</p>
+
+    <!-- 1. Simple Button with Alert -->
+    <button onclick="alert('Event 1: Music Concert - Oct 20th')">Event 1 (Alert)</button>
+
+    <br><br>
+
+    <!-- 2. Link Styled as Button -->
+    <a href="https://example.com/event2" target="_blank">
+        <button>Event 2 (Link)</button>
+    </a>
+
+    <br><br>
+
+    <!-- 3. Form Submission -->
+    <form action="https://example.com/event3" method="get">
+        <button type="submit">Event 3 (Form)</button>
+    </form>
+
+    <br><br>
+
+    <!-- 4. Button with JavaScript Event Listener -->
+    <button id="event4">Event 4 (JS Listener)</button>
+    <script>
+        document.getElementById("event4").addEventListener("click", function() {
+            alert('Event 4: Tech Meetup - Dec 1st');
+        });
+    </script>
+
+    <br><br>
+
+    <!-- 5. Button that changes page content -->
+    <button onclick="document.getElementById('event5Info').innerHTML = 'Event 5: Film Screening - Dec 10th'">Event 5 (Change Content)</button>
+    <p id="event5Info"></p>
+
+    <br><br>
+
+    <!-- 6. Button that redirects to another page -->
+    <button onclick="window.location.href='https://example.com/event6'">Event 6 (Redirect)</button>
+
+    <br><br>
+
+    <!-- 7. Button with console log -->
+    <button onclick="console.log('Event 7: Charity Run - Dec 15th')">Event 7 (Console Log)</button>
+
+    <br><br>
+
+    <!-- 8. Button triggering prompt dialog -->
+    <button onclick="let name = prompt('Enter your name:'); alert('Hello ' + name + '! See you at Event 8: New Year Celebration - Dec 31st')">Event 8 (Prompt)</button>
+
+    <br><br>
+
+    <footer>
+        <p>Contact us at <a href="mailto:info@dallasevents.com">info@dallasevents.com</a></p>
+        <p>&copy; 2024 Dallas Events</p>
+    </footer>
+
+</body>
+</html>
