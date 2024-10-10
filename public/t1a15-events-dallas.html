@@ -10,7 +10,7 @@
 <input type="button" value="Show on page" onclick="showMessage()" /><br><br>
 
 <!-- 3. onClick (button click event) -->
-<div id="myDiv01" onmouseover="handleMouseOver()" onmousemove="handleMouseMove(event)">...</div><br><br>
+<div id="myDiv01" onmouseover="handleMouseOver()" onmousemove="throttledMouseMove(event)">...</div><br><br>
 
 <!-- 4. onMouseOver (hover over div) -->
 <!-- No need to modify this -->
@@ -44,11 +44,6 @@
         console.log("Mouse over event triggered on Div 1");
     }
 
-    function handleMouseMove(event) {
-        // Corrected handling of mouse coordinates
-        document.getElementById('myDiv01').innerHTML = `X: ${event.clientX}, Y: ${event.clientY}`;
-    }
-
     function handleMouseOut() {
         console.log("Mouse out event triggered on Div 2");
     }
@@ -63,6 +58,16 @@
 
     function handleChange() {
         console.log("Input value changed");
+    }
+
+    // Throttling function to limit the frequency of updates
+    let lastTime = 0;
+    function throttledMouseMove(event) {
+        const now = Date.now();
+        if (now - lastTime > 50) { // update every 50 milliseconds
+            lastTime = now;
+            document.getElementById('myDiv01').innerHTML = `X: ${event.clientX}, Y: ${event.clientY}`;
+        }
     }
 </script>
 
