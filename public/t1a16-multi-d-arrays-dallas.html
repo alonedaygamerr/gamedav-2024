@@ -32,6 +32,48 @@ function setAutoArray() {
 function showAutoArray() {
   document.getElementById('myDiv01').innerHTML += 'You print it out';
 }
+
+// New Functions
+
+// 1. Clear the array display
+function clearDisplay() {
+  document.getElementById('myDiv01').innerHTML = '';
+}
+
+// 2. Calculate the sum of the manual array
+function sumManualArray() {
+  let sum = 0;
+  for (let i = 0; i < myMax; i++) {
+    for (let j = 0; j < myMax; j++) {
+      sum += myArrayManual[i][j];
+    }
+  }
+  document.getElementById('myDiv01').innerHTML = `Sum of manual array: ${sum}`;
+}
+
+// 3. Generate a random 3x3 auto array
+function generateRandomAutoArray() {
+  for (let i = 0; i < myMax; i++) {
+    myArrayAuto[i] = new Array(myMax);
+    for (let j = 0; j < myMax; j++) {
+      myArrayAuto[i][j] = Math.floor(Math.random() * 100);
+    }
+  }
+  document.getElementById('myDiv01').innerHTML = 'Auto array generated!';
+}
+
+// 4. Find the maximum value in the manual array
+function findMaxManualArray() {
+  let max = myArrayManual[0][0];
+  for (let i = 0; i < myMax; i++) {
+    for (let j = 0; j < myMax; j++) {
+      if (myArrayManual[i][j] > max) {
+        max = myArrayManual[i][j];
+      }
+    }
+  }
+  document.getElementById('myDiv01').innerHTML = `Max value in manual array: ${max}`;
+}
 </script>
 
 <input type="text" id="myFirstName" value="fred"><br>
@@ -39,4 +81,11 @@ function showAutoArray() {
 <input type="button" value="Show Manual Array" onclick="showManualArray()">
 <input type="button" value="Set Auto Array" onclick="setAutoArray()">
 <input type="button" value="Show Auto Array" onclick="showAutoArray()"><br>
+
+<!-- New Buttons -->
+<input type="button" value="Clear Display" onclick="clearDisplay()">
+<input type="button" value="Sum Manual Array" onclick="sumManualArray()">
+<input type="button" value="Generate Random Auto Array" onclick="generateRandomAutoArray()">
+<input type="button" value="Find Max in Manual Array" onclick="findMaxManualArray()"><br>
+
 <div id="myDiv01">...</div>
