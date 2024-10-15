@@ -1,6 +1,64 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Demo - Dallas</title>
+    <style>
+        /* Centered heading styling */
+        h1 {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin-bottom: 20px;
+        }
 
-<h1 align="center">t1a15-events-dallas</h1>
+        /* Styling for input fields and buttons */
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 14px;
+        }
 
+        input[type="button"] {
+            padding: 10px 20px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Styling for divs used in event handling */
+        #myDiv01, #myDiv02 {
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            display: inline-block;
+            background-color: #f0f0f0;
+            margin: 10px 0;
+            width: 250px;
+            text-align: center;
+        }
+
+        /* Additional styles for the main container */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+    </style>
+</head>
 <body>
 
     <h1 align="center">Event Handling Demo - Dallas</h1>
@@ -13,12 +71,12 @@
     <input type="button" value="Show on page" onclick="showMessage()" /><br><br>
 
     <!-- 3. Click event (button click event) -->
-    <div id="myDiv01" onmouseover="handleMouseOver()" onmousemove="throttledMouseMove(event)" style="padding: 10px; border: 1px solid #000; display: inline-block;">
+    <div id="myDiv01" onmouseover="handleMouseOver()" onmousemove="throttledMouseMove(event)">
         Move mouse here
     </div><br><br>
 
     <!-- 5. Mouse out event (when mouse leaves div) -->
-    <div id="myDiv02" onmouseout="handleMouseOut()" style="padding: 10px; border: 1px solid #000; display: inline-block;">
+    <div id="myDiv02" onmouseout="handleMouseOut()">
         Hover here then leave
     </div><br><br>
 
@@ -101,3 +159,4 @@
     </script>
 
 </body>
+</html>
