@@ -1,74 +1,103 @@
-<body>
 
 <h1 align="center">t1a15-events-dallas</h1>
 
-<!-- 1. onTouchEvent (for mobile touch) -->
-<b onTouchStart="handleTouchEvent()">Input: </b>
-<input type="text" id="myFirstName" value="fred" onblur="handleBlur()" /><br><br>
+<body>
 
-<!-- 2. onBlur (when input loses focus) -->
-<input type="button" value="Show on page" onclick="showMessage()" /><br><br>
+    <h1 align="center">Event Handling Demo - Dallas</h1>
 
-<!-- 3. onClick (button click event) -->
-<div id="myDiv01" onmouseover="handleMouseOver()" onmousemove="throttledMouseMove(event)">...</div><br><br>
+    <!-- 1. Touch event (mobile touch) -->
+    <b onTouchStart="handleTouchEvent()">Input:</b>
+    <input type="text" id="myFirstName" value="fred" onblur="handleBlur()" /><br><br>
 
-<!-- 4. onMouseOver (hover over div) -->
-<!-- No need to modify this -->
+    <!-- 2. Blur event (when input loses focus) -->
+    <input type="button" value="Show on page" onclick="showMessage()" /><br><br>
 
-<!-- 5. onMouseOut (when mouse leaves div) -->
-<div id="myDiv02" onmouseout="handleMouseOut()">Hover here then leave</div><br><br>
+    <!-- 3. Click event (button click event) -->
+    <div id="myDiv01" onmouseover="handleMouseOver()" onmousemove="throttledMouseMove(event)" style="padding: 10px; border: 1px solid #000; display: inline-block;">
+        Move mouse here
+    </div><br><br>
 
-<!-- 6. onFocus (when input gains focus) -->
-<input type="text" id="myName" onfocus="handleFocus()" /><br><br>
+    <!-- 5. Mouse out event (when mouse leaves div) -->
+    <div id="myDiv02" onmouseout="handleMouseOut()" style="padding: 10px; border: 1px solid #000; display: inline-block;">
+        Hover here then leave
+    </div><br><br>
 
-<!-- 7. onKeyUp (when a key is released) -->
-<input type="text" id="myKeyInput" onkeyup="handleKeyUp()" placeholder="Type something..."/><br><br>
+    <!-- 6. Focus event (when input gains focus) -->
+    <input type="text" id="myName" onfocus="handleFocus()" placeholder="Focus on me..." /><br><br>
 
-<!-- 8. onChange (when input value changes) -->
-<input type="text" id="myTextInput" onchange="handleChange()" placeholder="Change me..." />
+    <!-- 7. Key up event (when a key is released) -->
+    <input type="text" id="myKeyInput" onkeyup="handleKeyUp()" placeholder="Type something..." /><br><br>
 
-<script>
-    function handleTouchEvent() {
-        console.log("Touch event triggered");
-    }
+    <!-- 8. Change event (when input value changes) -->
+    <input type="text" id="myTextInput" onchange="handleChange()" placeholder="Change me..." />
 
-    function handleBlur() {
-        console.log("Input lost focus");
-    }
+    <script>
+        // Event handling functions
 
-    function showMessage() {
-        document.getElementById('myDiv01').innerHTML = 'Hey';
-    }
+        const handleTouchEvent = () => {
+            console.log("Touch event triggered");
+            alert("Touch event triggered");
+        };
 
-    function handleMouseOver() {
-        console.log("Mouse over event triggered on Div 1");
-    }
+        const handleBlur = () => {
+            console.log("Input lost focus");
+            alert("Input lost focus");
+        };
 
-    function handleMouseOut() {
-        console.log("Mouse out event triggered on Div 2");
-    }
+        const showMessage = () => {
+            document.getElementById('myDiv01').innerHTML = 'Hello from Dallas!';
+        };
 
-    function handleFocus() {
-        console.log("Input focused");
-    }
+        const handleMouseOver = () => {
+            console.log("Mouse over event triggered on Div 1");
+        };
 
-    function handleKeyUp() {
-        console.log("Key up event triggered");
-    }
+        const handleMouseOut = () => {
+            console.log("Mouse out event triggered on Div 2");
+        };
 
-    function handleChange() {
-        console.log("Input value changed");
-    }
+        const handleFocus = () => {
+            console.log("Input focused");
+        };
 
-    // Throttling function to limit the frequency of updates
-    let lastTime = 0;
-    function throttledMouseMove(event) {
-        const now = Date.now();
-        if (now - lastTime > 50) { // update every 50 milliseconds
-            lastTime = now;
+        const handleKeyUp = () => {
+            console.log("Key up event triggered");
+        };
+
+        const handleChange = () => {
+            console.log("Input value changed");
+        };
+
+        // Throttling function to limit the frequency of mouse move updates
+        let lastTime = 0;
+        const throttledMouseMove = (event) => {
+            const now = Date.now();
+            if (now - lastTime > 50) { // Update every 50 milliseconds
+                lastTime = now;
+                updateMousePosition(event);
+            }
+        };
+
+        const updateMousePosition = (event) => {
             document.getElementById('myDiv01').innerHTML = `X: ${event.clientX}, Y: ${event.clientY}`;
-        }
-    }
-</script>
+        };
+
+        // RequestAnimationFrame version for smoother updates
+        const throttle = (callback, delay) => {
+            let lastCall = 0;
+            return (...args) => {
+                const now = Date.now();
+                if (now - lastCall >= delay) {
+                    lastCall = now;
+                    requestAnimationFrame(() => callback(...args));
+                }
+            };
+        };
+
+        const throttledMouseMoveEnhanced = throttle((event) => {
+            document.getElementById('myDiv01').innerHTML = `X: ${event.clientX}, Y: ${event.clientY}`;
+        }, 50);
+
+    </script>
 
 </body>
