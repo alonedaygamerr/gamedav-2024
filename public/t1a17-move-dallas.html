@@ -1,21 +1,58 @@
-<h1 align="center">t1a17-move-dallas.html</h1>
-<script>
-// Global variables
-let myClock02;
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Image Example</title>
+    <style>
+        /* Adding some basic styles for the buttons and image */
+        #myImage01 {
+            position: relative;
+            width: 100px;
+            height: 80px;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
 
-<input type="button" id="myButton02" value="Image Right" onclick="
-    document.getElementById('myImage01').style.left = 
-    parseInt(document.getElementById('myImage01').style.left) + 10 + 'px';
-"><br><br>
+    <!-- Title aligned at the center -->
+    <h1 align="center">Move Image Example</h1>
 
-<input type="button" value="Auto Move Right" onclick="
-    document.getElementById('myImage01').style.left = '0px';
-    clearInterval(myClock02);
-    myClock02 = setInterval(function() {
-        document.getElementById('myButton02').click();
-    }, 30);
-    // Activate click every 30 milliseconds
-"><br><br>
+    <!-- Button to move the image right by 10 pixels -->
+    <input type="button" id="myButton02" value="Move Image Right" onclick="moveImageRight()"><br><br>
 
-<img id="myImage01" style="position:relative; width:100px; height:80px; top:0px; left:0px;" src="myImage01.jpg">
+    <!-- Button to start auto-moving the image to the right -->
+    <input type="button" value="Auto Move Right" onclick="startAutoMove()"><br><br>
+
+    <!-- Image that will move -->
+    <img id="myImage01" src="myImage01.jpg" alt="Movable Image">
+
+    <script>
+        // Global variable to store the interval function reference for auto-moving
+        let myClock02;
+
+        // Function to move the image right by 10 pixels
+        function moveImageRight() {
+            let image = document.getElementById('myImage01');
+            // Parse the current 'left' style value as an integer and move it 10 pixels to the right
+            image.style.left = parseInt(image.style.left) + 10 + 'px';
+        }
+
+        // Function to start automatically moving the image to the right
+        function startAutoMove() {
+            let image = document.getElementById('myImage01');
+            // Reset the image position to 0px (the leftmost side)
+            image.style.left = '0px';
+
+            // Stop any existing auto move function to prevent overlapping
+            clearInterval(myClock02);
+
+            // Start a new interval that clicks the move button every 30 milliseconds
+            myClock02 = setInterval(function() {
+                moveImageRight(); // Move the image right every 30ms
+            }, 30);
+        }
+    </script>
+
+</body>
+</html>
