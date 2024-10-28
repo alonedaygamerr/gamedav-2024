@@ -1,35 +1,115 @@
-<h2 align="center">t1a18-extend-class-by-fred.html</h2>
-<script>
-class myAnimal {
-    constructor(passName, passAge) {
-        this.myName = passName;
-        this.myAge = passAge;
-    }
-    myShow() {
-        document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + '<br>';
-    }
-}
-// end class myAnimal
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended Class Example</title>
+    <style>
+        /* Center title and style inputs and output div */
+        h2 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
 
-class myCat extends myAnimal {
-    myShow() {
-        document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat<br>';
+        /* Style buttons and input fields */
+        input[type="button"] {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 14px;
+            width: 200px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Style the output div */
+        #myDiv01 {
+            margin: 20px auto;
+            padding: 20px;
+            width: 300px;
+            font-family: Arial, sans-serif;
+            color: #444;
+            text-align: center;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<h2>t1a18-extend-class-by-dallas.html</h2>
+
+<script>
+    class myAnimal {
+        constructor(passName, passAge) {
+            this.myName = passName;
+            this.myAge = passAge;
+        }
+        myShow() {
+            document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + ', age ' + this.myAge + '<br>';
+        }
     }
-}
-// end extended class myCat
+    // end class myAnimal
+
+    class myCat extends myAnimal {
+        myShow() {
+            document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat and is ' + this.myAge + ' years old.<br>';
+        }
+    }
+    // end extended class myCat
+
+    class myDog extends myAnimal {
+        myShow() {
+            document.getElementById('myDiv01').innerHTML = this.myName + ' is a loyal dog and is ' + this.myAge + ' years old.<br>';
+        }
+    }
+    // end extended class myDog
+
+    class myBird extends myAnimal {
+        myShow() {
+            document.getElementById('myDiv01').innerHTML = this.myName + ' is a beautiful bird and is ' + this.myAge + ' years old.<br>';
+        }
+    }
+    // end extended class myBird
 </script>
 
-<input type="button" value="Example Class Set and Show Class Animal" onClick="
+<!-- Buttons to demonstrate the base and extended classes -->
+<input type="button" value="Set and Show Class Animal" onClick="
     myDog = new myAnimal('Snickers', 5);
     myDog.myShow();
 "><br><br>
 
 <input type="text" id="myText01" value="may be useful later"><br>
 
-<input type="button" value="Example Extend Class Animal as Cat" onClick="
+<input type="button" value="Show Cat" onClick="
     myPet = new myCat('Fluffy', 14);
     myPet.myShow();
 "><br><br>
+
+<input type="button" value="Show Dog" onClick="
+    myPet = new myDog('Buddy', 7);
+    myPet.myShow();
+"><br><br>
+
+<input type="button" value="Show Bird" onClick="
+    myPet = new myBird('Tweety', 2);
+    myPet.myShow();
+"><br><br>
+
+<!-- Output area for the messages -->
+<div id="myDiv01">...</div>
+
+</body>
 
 <div id="myDiv01">...</div>
 
