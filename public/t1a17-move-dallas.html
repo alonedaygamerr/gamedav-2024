@@ -59,10 +59,11 @@
         <button class="move-button" onclick="moveImageRight()">Move Right</button>
     </div>
 
-    <!-- Button to start auto-moving the image to the right -->
+    <!-- Button to start and stop auto-moving the image to the right -->
     <div class="button-container">
         <button class="move-button" onclick="startAutoMove()">Auto Move Right</button>
         <button class="move-button" onclick="stopAutoMove()">Stop Auto Move</button>
+        <button class="move-button" onclick="resetPosition()">Reset Position</button>
     </div>
 
     <!-- Image that will move -->
@@ -77,25 +78,25 @@
         // Function to move the image right by 10 pixels
         function moveImageRight() {
             let image = document.getElementById('myImage01');
-            image.style.left = parseInt(image.style.left) + 10 + 'px';
+            image.style.left = (parseInt(image.style.left) || 0) + 10 + 'px';
         }
 
         // Function to move the image left by 10 pixels
         function moveImageLeft() {
             let image = document.getElementById('myImage01');
-            image.style.left = parseInt(image.style.left) - 10 + 'px';
+            image.style.left = (parseInt(image.style.left) || 0) - 10 + 'px';
         }
 
         // Function to move the image up by 10 pixels
         function moveImageUp() {
             let image = document.getElementById('myImage01');
-            image.style.top = parseInt(image.style.top) - 10 + 'px';
+            image.style.top = (parseInt(image.style.top) || 0) - 10 + 'px';
         }
 
         // Function to move the image down by 10 pixels
         function moveImageDown() {
             let image = document.getElementById('myImage01');
-            image.style.top = parseInt(image.style.top) + 10 + 'px';
+            image.style.top = (parseInt(image.style.top) || 0) + 10 + 'px';
         }
 
         // Function to start automatically moving the image to the right
@@ -112,7 +113,13 @@
         function stopAutoMove() {
             clearInterval(myClock02);
         }
+
+        // Function to reset the image position
+        function resetPosition() {
+            let image = document.getElementById('myImage01');
+            image.style.left = '0px';
+            image.style.top = '0px';
+        }
     </script>
 
 </body>
-</html>
