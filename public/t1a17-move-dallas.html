@@ -3,29 +3,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Move Image Example</title>
     <style>
-        /* Adding some basic styles for the buttons and image */
+        /* Centering the title */
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        
+        /* Styling the buttons */
+        .move-button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        /* Styling the container for the buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        /* Styling the image */
         #myImage01 {
             position: relative;
             width: 100px;
             height: 80px;
             top: 0px;
             left: 0px;
+            transition: all 0.1s ease-in-out; /* Smooth transitions */
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 <body>
 
     <!-- Title aligned at the center -->
-    <h1 align="center">Move Image Example</h1>
+    <h1>Move Image Example</h1>
 
-    <!-- Button to move the image right by 10 pixels -->
-    <input type="button" id="myButton02" value="Move Image Right" onclick="moveImageRight()"><br><br>
+    <!-- Button container for all move buttons -->
+    <div class="button-container">
+        <button class="move-button" onclick="moveImageLeft()">Move Left</button>
+        <button class="move-button" onclick="moveImageUp()">Move Up</button>
+        <button class="move-button" onclick="moveImageDown()">Move Down</button>
+        <button class="move-button" onclick="moveImageRight()">Move Right</button>
+    </div>
 
     <!-- Button to start auto-moving the image to the right -->
-    <input type="button" value="Auto Move Right" onclick="startAutoMove()"><br><br>
+    <div class="button-container">
+        <button class="move-button" onclick="startAutoMove()">Auto Move Right</button>
+        <button class="move-button" onclick="stopAutoMove()">Stop Auto Move</button>
+    </div>
 
     <!-- Image that will move -->
-    <img id="myImage01" src="myImage01.jpg" alt="Movable Image">
+    <div style="text-align: center; margin-top: 20px;">
+        <img id="myImage01" src="myImage01.jpg" alt="Movable Image">
+    </div>
 
     <script>
         // Global variable to store the interval function reference for auto-moving
@@ -34,23 +77,40 @@
         // Function to move the image right by 10 pixels
         function moveImageRight() {
             let image = document.getElementById('myImage01');
-            // Parse the current 'left' style value as an integer and move it 10 pixels to the right
             image.style.left = parseInt(image.style.left) + 10 + 'px';
+        }
+
+        // Function to move the image left by 10 pixels
+        function moveImageLeft() {
+            let image = document.getElementById('myImage01');
+            image.style.left = parseInt(image.style.left) - 10 + 'px';
+        }
+
+        // Function to move the image up by 10 pixels
+        function moveImageUp() {
+            let image = document.getElementById('myImage01');
+            image.style.top = parseInt(image.style.top) - 10 + 'px';
+        }
+
+        // Function to move the image down by 10 pixels
+        function moveImageDown() {
+            let image = document.getElementById('myImage01');
+            image.style.top = parseInt(image.style.top) + 10 + 'px';
         }
 
         // Function to start automatically moving the image to the right
         function startAutoMove() {
             let image = document.getElementById('myImage01');
-            // Reset the image position to 0px (the leftmost side)
             image.style.left = '0px';
-
-            // Stop any existing auto move function to prevent overlapping
             clearInterval(myClock02);
-
-            // Start a new interval that clicks the move button every 30 milliseconds
             myClock02 = setInterval(function() {
-                moveImageRight(); // Move the image right every 30ms
+                moveImageRight();
             }, 30);
+        }
+
+        // Function to stop the automatic movement
+        function stopAutoMove() {
+            clearInterval(myClock02);
         }
     </script>
 
