@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corner DVD Screensaver</title>
+    <title>Color-Changing DVD Screensaver</title>
     <style>
         body {
             margin: 0;
@@ -9,20 +9,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: black;
+            background: linear-gradient(135deg, #333, #222);
         }
 
         #logo {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: bold;
             color: white;
-            padding: 20px;
+            padding: 20px 40px;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #ff0000;
             border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.2s;
         }
     </style>
 </head>
@@ -36,21 +38,33 @@
         let x = Math.random() * window.innerWidth;
         let y = Math.random() * window.innerHeight;
 
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
         function moveLogo() {
             x += xSpeed;
             y += ySpeed;
 
             if ((x <= 0 || x >= window.innerWidth - logo.offsetWidth) && 
                 (y <= 0 || y >= window.innerHeight - logo.offsetHeight)) {
-                // Reverse both directions to always hit a corner
+                // Reverse both directions and change color
                 xSpeed = -xSpeed;
                 ySpeed = -ySpeed;
+                logo.style.backgroundColor = getRandomColor();
             } else if (x <= 0 || x >= window.innerWidth - logo.offsetWidth) {
-                // Reverse x direction only
+                // Reverse x direction and change color
                 xSpeed = -xSpeed;
+                logo.style.backgroundColor = getRandomColor();
             } else if (y <= 0 || y >= window.innerHeight - logo.offsetHeight) {
-                // Reverse y direction only
+                // Reverse y direction and change color
                 ySpeed = -ySpeed;
+                logo.style.backgroundColor = getRandomColor();
             }
 
             logo.style.left = `${x}px`;
