@@ -28,11 +28,13 @@
 
         /* Link Styling */
         a {
-            font-size: 1.5em;
+            font-size: 1.2em;
             text-decoration: none;
             color: #00eaff;
             padding: 10px 0;
-            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
         }
 
         /* Link Hover Effect */
@@ -41,28 +43,42 @@
             color: #1e3c72;
             padding-left: 10px;
         }
+
+        /* Badge Styles */
+        .badge {
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .good {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+        .needs-review {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <!-- Header: Mark as needed to review the title and heading style -->
     <h1>Index Page by Dallas</h1>
-
-    <!-- Main Link Section -->
     <div class="link-container">
-        <!-- Sample Links for Navigation - Teacher can check if the link formatting and styles are correct -->
-        <a href="https://github.com/alonedaygamerr/gamedav-2024">Github</a>
-        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/t1a01-basic.html">t1a01-basic-dallas</a>
-        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/t1a02-proper-dallas.html">t1a02-proper-dallas</a>
-        <!-- Additional links go here; add any missing closing tags as needed -->
+        <a href="https://github.com/alonedaygamerr/gamedav-2024">Github <span class="badge good">Good</span></a>
+        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/t1a01-basic.html">t1a01-basic-dallas <span class="badge good">Good</span></a>
+        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/t1a02-proper-dallas.html">t1a02-proper-dallas <span class="badge needs-review">Needs Review</span></a>
+        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/t1a03-table-list-dallas.html">t1a03-table-list-dallas <span class="badge good">Good</span></a>
+        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/t1a04-forms-dallas.html">t1a04-forms-dallas <span class="badge needs-review">Needs Review</span></a>
+        <!-- Additional links with their respective status badges -->
     </div>
 
-    <!-- Additional Section for X Assignments - Teacher should review styles and functionality -->
     <h1>X-Assignments</h1>
     <div class="link-container">
-        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/X-01-Webcam.html">X-Webcam-dallas</a>
-        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/X-simple.html">X-simple-dallas</a>
-        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/X-aim-text-dallas.html">X-aim-text-dallas</a>
-        <!-- More X assignment links -->
+        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/X-01-Webcam.html">X-Webcam-dallas <span class="badge good">Good</span></a>
+        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/X-simple.html">X-simple-dallas <span class="badge needs-review">Needs Review</span></a>
+        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/X-aim-text-dallas.html">X-aim-text-dallas <span class="badge good">Good</span></a>
+        <a href="https://alonedaygamerr.github.io/gamedav-2024/public/X-crash-button.html">X-crash-button <span class="badge needs-review">Needs Review</span></a>
+        <!-- More X assignment links with badges -->
     </div>
 </body>
-</html>
