@@ -37,25 +37,23 @@
         canvas.width = canvas.height = gridSize * tileCount;
 
         let snake = [{ x: 12, y: 12 }];
-        let apple = spawnApple();
+        let apples = spawnApples(5); // Spawn 5 apples
         let velocity = { x: 0, y: 0 };
         let score = 0;
         let growing = 0;
-        let gameSpeed = 200; // Slower movement (200 milliseconds delay)
+        let gameSpeed = 200;
 
         document.addEventListener('keydown', changeDirection);
 
         function gameLoop() {
             moveSnake();
-            if (isAppleEaten()) {
-                score++;
-                growing += 2;
-                apple = spawnApple();
+            apples = apples.filter(apple => !isAppleEaten(apple)); // Remove eaten apples
+            if (apples.length < 5) {
+                apples.push(spawnApple());
             }
-
             drawGame();
             if (!isGameOver()) {
-                setTimeout(gameLoop, gameSpeed); // Slower frame rate by increasing delay
+                setTimeout(gameLoop, gameSpeed);
             } else {
                 alert('Game Over! Your score: ' + score);
                 document.location.reload();
@@ -89,15 +87,32 @@
             }
         }
 
-        function isAppleEaten() {
-            return snake[0].x === apple.x && snake[0].y === apple.y;
+        function isAppleEaten(apple) {
+            if (snake[0].x === apple.x && snake[0].y === apple.y) {
+                score++;
+                growing += 2;
+                return true;
+            }
+            return false;
         }
 
         function spawnApple() {
-            return {
-                x: Math.floor(Math.random() * tileCount),
-                y: Math.floor(Math.random() * tileCount)
-            };
+            let newApple;
+            do {
+                newApple = {
+                    x: Math.floor(Math.random() * tileCount),
+                    y: Math.floor(Math.random() * tileCount)
+                };
+            } while (snake.some(segment => segment.x === newApple.x && segment.y === newApple.y));
+            return newApple;
+        }
+
+        function spawnApples(count) {
+            const apples = [];
+            for (let i = 0; i < count; i++) {
+                apples.push(spawnApple());
+            }
+            return apples;
         }
 
         function isGameOver() {
@@ -116,14 +131,16 @@
         function drawGame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw the apple
+            // Draw the apples
             ctx.fillStyle = 'red';
             ctx.shadowBlur = 10;
             ctx.shadowColor = 'red';
-            ctx.beginPath();
-            ctx.arc((apple.x * gridSize) + gridSize / 2, (apple.y * gridSize) + gridSize / 2, gridSize / 2, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.closePath();
+            apples.forEach(apple => {
+                ctx.beginPath();
+                ctx.arc((apple.x * gridSize) + gridSize / 2, (apple.y * gridSize) + gridSize / 2, gridSize / 2, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.closePath();
+            });
             ctx.shadowBlur = 0;
 
             // Draw the snake with gradient color
