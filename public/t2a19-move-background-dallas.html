@@ -1,48 +1,68 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Background and Image</title>
+</head>
 <body id="myBody" style="background-repeat: repeat; background-size: 80%;" background="myBackground.jpg">
-  <script>
-    let myGlobalX = 0;
-    let myClock01;
-    let myClock02;
-    let mySpeed01 = 400;
-  </script>
+    <script>
+        let myGlobalX = 0;
+        let myClock01;
+        let myClock02;
+        let mySpeed01 = 400;
 
-  <h1 align="center">t2a19-move-background-dallas.html</h1>
+        // Function to move background left
+        function moveBackgroundLeft() {
+            myGlobalX -= 5;
+            let myTemp = myGlobalX + 'px 0px';
+            document.getElementById('myBody').style.backgroundPosition = myTemp;
+        }
 
-  <input id="myButton01" type="button" value="Background Move Left" onclick="
-    myGlobalX -= 5;
-    let myTemp = myGlobalX + 'px 0px';
-    document.getElementById('myBody').style.backgroundPosition = myTemp;
-  ">
+        // Function to increase speed of background movement to the left
+        function autoBackgroundLeftFaster() {
+            clearInterval(myClock01);
+            mySpeed01 -= 30;
+            if (mySpeed01 < 10) { mySpeed01 = 10; }
+            myClock01 = setInterval(moveBackgroundLeft, mySpeed01);
+        }
 
-  <input type="button" value="Auto Background Left Faster" onclick="
-    clearInterval(myClock01);
-    mySpeed01 -= 30;
-    if (mySpeed01 < 10) { mySpeed01 = 10; }
-    myClock01 = setInterval(function(){
-      document.getElementById('myButton01').click();
-    }, mySpeed01);
-  ">
+        // Function to decrease speed of background movement to the left
+        function autoBackgroundLeftSlower() {
+            clearInterval(myClock01);
+            mySpeed01 += 30;
+            if (mySpeed01 > 1000) { mySpeed01 = 1000; }
+            myClock01 = setInterval(moveBackgroundLeft, mySpeed01);
+        }
 
-  <input type="button" value="Auto Background Left Slower" onclick="
-    clearInterval(myClock01);
-    mySpeed01 += 30;
-    if (mySpeed01 > 1000) { mySpeed01 = 1000; }
-    myClock01 = setInterval(function(){
-      document.getElementById('myButton01').click();
-    }, mySpeed01);
-  ">
+        // Function to move image to the right
+        function moveImageRight() {
+            let img = document.getElementById('myImage01');
+            img.style.left = (parseInt(img.style.left) || 0) + 10 + 'px';
+        }
 
-  <input type="button" id="myButton02" value="Image Move Right" onclick="
-    let img = document.getElementById('myImage01');
-    img.style.left = (parseInt(img.style.left) || 0) + 10 + 'px';
-  "><br><br>
+        // Function to automatically move the image to the right
+        function autoMoveImageRight() {
+            clearInterval(myClock02);
+            myClock02 = setInterval(moveImageRight, 30);
+        }
+    </script>
 
-  <input type="button" value="Auto Move Image Left" onclick="
-    clearInterval(myClock02);
-    myClock02 = setInterval(function(){
-      document.getElementById('myButton02').click();
-    }, 30);
-  ">
+    <h1 align="center">t2a19-move-background-dallas.html</h1>
 
-  <img id="myImage01" style="position:relative; width:100px; height:80px; top:0px; left:0px;" src="myImage01.jpg">
+    <!-- Button to move background left -->
+    <input id="myButton01" type="button" value="Background Move Left" onclick="moveBackgroundLeft()">
+
+    <!-- Button to auto move background left faster -->
+    <input type="button" value="Auto Background Left Faster" onclick="autoBackgroundLeftFaster()">
+
+    <!-- Button to auto move background left slower -->
+    <input type="button" value="Auto Background Left Slower" onclick="autoBackgroundLeftSlower()">
+
+    <!-- Button to move image to the right -->
+    <input type="button" id="myButton02" value="Image Move Right" onclick="moveImageRight()"><br><br>
+
+    <!-- Button to auto move image to the right -->
+    <input type="button" value="Auto Move Image Right" onclick="autoMoveImageRight()">
+
+    <!-- Image element -->
+    <img id="myImage01" style="position:relative; width:100px; height:80px; top:0px; left:0px;" src="myImage01.jpg">
 </body>
