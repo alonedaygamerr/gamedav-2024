@@ -3,7 +3,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Move Background and Image</title>
 </head>
-<body id="myBody" style="background-repeat: repeat; background-size: 80%;" background="myBackground.jpg">
+<body id="myBody" style="background-image: url('myBackground.jpg'); background-repeat: repeat; background-size: 80%;">
+
     <script>
         let myGlobalX = 0;
         let myClock01;
@@ -33,6 +34,11 @@
             myClock01 = setInterval(moveBackgroundLeft, mySpeed01);
         }
 
+        // Function to stop the background movement
+        function stopBackground() {
+            clearInterval(myClock01);
+        }
+
         // Function to move image to the right
         function moveImageRight() {
             let img = document.getElementById('myImage01');
@@ -44,24 +50,25 @@
             clearInterval(myClock02);
             myClock02 = setInterval(moveImageRight, 30);
         }
+
+        // Function to stop the image movement
+        function stopImage() {
+            clearInterval(myClock02);
+        }
     </script>
 
     <h1 align="center">t2a19-move-background-dallas.html</h1>
 
-    <!-- Button to move background left -->
-    <input id="myButton01" type="button" value="Background Move Left" onclick="moveBackgroundLeft()">
-
-    <!-- Button to auto move background left faster -->
+    <!-- Buttons for background movement -->
+    <input type="button" value="Background Move Left" onclick="moveBackgroundLeft()">
     <input type="button" value="Auto Background Left Faster" onclick="autoBackgroundLeftFaster()">
-
-    <!-- Button to auto move background left slower -->
     <input type="button" value="Auto Background Left Slower" onclick="autoBackgroundLeftSlower()">
+    <input type="button" value="Stop Background" onclick="stopBackground()"><br><br>
 
-    <!-- Button to move image to the right -->
-    <input type="button" id="myButton02" value="Image Move Right" onclick="moveImageRight()"><br><br>
-
-    <!-- Button to auto move image to the right -->
+    <!-- Buttons for image movement -->
+    <input type="button" value="Image Move Right" onclick="moveImageRight()">
     <input type="button" value="Auto Move Image Right" onclick="autoMoveImageRight()">
+    <input type="button" value="Stop Image" onclick="stopImage()"><br><br>
 
     <!-- Image element -->
     <img id="myImage01" style="position:relative; width:100px; height:80px; top:0px; left:0px;" src="myImage01.jpg">
