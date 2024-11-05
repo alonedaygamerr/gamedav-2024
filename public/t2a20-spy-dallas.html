@@ -1,5 +1,9 @@
 <h1 align="center">t2a20-spy-dallas.html</h1>
 
+<body>
+
+    <h1 align="center">t2a20-spy-dallas.html</h1>
+
 <textarea id="myArea01" rows="4" cols="70">Hello how are you 123</textarea><br>
 <input type="button" value="Encrypt" onclick="
     let myString = document.getElementById('myArea01').value;
@@ -7,7 +11,12 @@
     for (let i = 0; i < myString.length; i++) {
         let charCode = myString.charCodeAt(i);
 
-        // Encrypt letters (a-z, A-Z)
+        // Skip spaces
+        if (charCode === 32) {
+            continue;
+        }
+
+        // Encrypt letters (A-Z, a-z)
         if (charCode >= 65 && charCode <= 90) { // Uppercase letters
             charCode = ((charCode - 65 + 2) % 26) + 65;
         } else if (charCode >= 97 && charCode <= 122) { // Lowercase letters
@@ -17,10 +26,6 @@
         else if (charCode >= 48 && charCode <= 57) { 
             charCode = ((charCode - 48 + 2) % 10) + 48;
         }
-        // Encrypt space
-        else if (charCode === 32) { 
-            charCode = 33; // Convert space to '!'
-        }
 
         encryptedString += String.fromCharCode(charCode);
     }
@@ -29,3 +34,5 @@
 
 <textarea id="myArea02" rows="4" cols="70"></textarea><br>
 <input type="button" value="Decrypt" onclick="alert('Sorry, you have to do this manually!')"><br><br>
+
+</body>
