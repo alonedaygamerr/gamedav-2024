@@ -1,54 +1,7 @@
 <h2 align="center">t2a21-canvas-dallas.html</h2>
-<p>You can use loops and variables to create fast and fancy drawings.</p>
+<p>Click the button to draw a stick figure on the canvas.</p>
 
-<input type="button" value=". lineTo(30,200)" onclick="{
-    myContext.beginPath();
-    myContext.lineWidth = 1;
-    myContext.moveTo(20, 10);
-    myContext.lineTo(30, 200);
-    myContext.stroke();
-}">
-
-<input type="button" value=". arc(95, 50, 40, 0, 2 * Math.PI)" onclick="{
-    myContext.beginPath();
-    myContext.lineWidth = 10;
-    myContext.strokeStyle = 'green';
-    myContext.arc(95, 50, 40, 0, 2 * Math.PI);
-    myContext.stroke();
-}">
-
-<input type="button" value="fillText('Hello World', 400, 100)" onclick="{
-    myContext.font = '20px Arial';
-    myContext.fillText('Hello World', 400, 100);
-    myContext.translate(400, 100);
-    myContext.rotate(60 * Math.PI / 180);
-    myContext.fillText('Hello World', 10, 10);
-    myContext.resetTransform();
-}">
-
-<input type="button" value=". quadraticCurveTo(100,220,240,110)" onclick="{
-    myContext.beginPath();
-    myContext.moveTo(300, 100);
-    myContext.quadraticCurveTo(100, 220, 240, 110);
-    myContext.stroke();
-}">
-
-<input type="button" value=". createLinearGradient(100, 300, 200, 400)" onclick="{
-    let myGradient = myContext.createLinearGradient(100, 300, 200, 400);
-    myGradient.addColorStop(0, 'red');
-    myGradient.addColorStop(0.5, 'blue');
-    myContext.fillStyle = myGradient;
-    myContext.fillRect(100, 300, 100, 100);
-    myContext.fillStyle = 'black';  // Reset fillStyle
-}">
-
-<input type="button" value="clearRect(20, 20, 50, 50)" onclick="{
-    myContext.clearRect(20, 20, 50, 50);
-}">
-
-<input type="button" value="Clear all" onclick="{
-    myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
-}">
+<input type="button" value="Draw Stick Figure" onclick="drawStickFigure()">
 
 <br><br>
 <canvas id="myCoolTag" width="1000" height="600" style="border:1px solid #000000;"></canvas>
@@ -57,4 +10,35 @@
     // Set up global variables
     let myCanvas = document.getElementById('myCoolTag');
     let myContext = myCanvas.getContext('2d');
+
+    // Function to draw a stick figure
+    function drawStickFigure() {
+        // Clear the canvas first (optional)
+        myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+        // Draw the head
+        myContext.beginPath();
+        myContext.arc(500, 100, 30, 0, 2 * Math.PI);  // Head at (500, 100) with radius 30
+        myContext.stroke();
+
+        // Draw the body
+        myContext.beginPath();
+        myContext.moveTo(500, 130);  // Starting point for body
+        myContext.lineTo(500, 250);  // Body length
+        myContext.stroke();
+
+        // Draw the arms
+        myContext.beginPath();
+        myContext.moveTo(450, 170);  // Left arm
+        myContext.lineTo(550, 170);  // Right arm
+        myContext.stroke();
+
+        // Draw the legs
+        myContext.beginPath();
+        myContext.moveTo(500, 250);  // Left leg
+        myContext.lineTo(460, 350);
+        myContext.moveTo(500, 250);  // Right leg
+        myContext.lineTo(540, 350);
+        myContext.stroke();
+    }
 </script>
