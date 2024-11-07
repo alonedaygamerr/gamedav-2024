@@ -1,7 +1,11 @@
 <h2 align="center">t2a21-canvas-dallas.html</h2>
-<p>Click the button to draw a stick figure on the canvas.</p>
+<p>Click each button to draw parts of a stick figure on the canvas.</p>
 
-<input type="button" value="Draw Stick Figure" onclick="drawStickFigure()">
+<input type="button" value="Draw Head" onclick="drawHead()">
+<input type="button" value="Draw Body" onclick="drawBody()">
+<input type="button" value="Draw Arms" onclick="drawArms()">
+<input type="button" value="Draw Legs" onclick="drawLegs()">
+<input type="button" value="Clear Canvas" onclick="clearCanvas()">
 
 <br><br>
 <canvas id="myCoolTag" width="1000" height="600" style="border:1px solid #000000;"></canvas>
@@ -11,29 +15,36 @@
     let myCanvas = document.getElementById('myCoolTag');
     let myContext = myCanvas.getContext('2d');
 
-    // Function to draw a stick figure
-    function drawStickFigure() {
-        // Clear the canvas first (optional)
+    // Function to clear the canvas
+    function clearCanvas() {
         myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    }
 
-        // Draw the head
+    // Function to draw the head
+    function drawHead() {
         myContext.beginPath();
         myContext.arc(500, 100, 30, 0, 2 * Math.PI);  // Head at (500, 100) with radius 30
         myContext.stroke();
+    }
 
-        // Draw the body
+    // Function to draw the body
+    function drawBody() {
         myContext.beginPath();
         myContext.moveTo(500, 130);  // Starting point for body
         myContext.lineTo(500, 250);  // Body length
         myContext.stroke();
+    }
 
-        // Draw the arms
+    // Function to draw the arms
+    function drawArms() {
         myContext.beginPath();
         myContext.moveTo(450, 170);  // Left arm
         myContext.lineTo(550, 170);  // Right arm
         myContext.stroke();
+    }
 
-        // Draw the legs
+    // Function to draw the legs
+    function drawLegs() {
         myContext.beginPath();
         myContext.moveTo(500, 250);  // Left leg
         myContext.lineTo(460, 350);
