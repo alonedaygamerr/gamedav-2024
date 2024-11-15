@@ -1,24 +1,59 @@
-<h2>t2a23-local-storage-dallas Instructions:</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Example</title>
+</head>
+<body onload="loadStoredText()">
 
-<body onload="{
-   myStorage = localStorage.getItem('myStoredText')
-   if(myStorage  != null){
-      document.getElementById('myText1').value = myStorage 
-    }
-}">
+    <h2>Local Storage Example</h2>
 
-<body onunload="{
-   localstorage.setItem('myStoredText',document.getElementById('myText1').value)
-}">   
+    <label for="myText1">Text example:</label>
+    <input id="myText1" type="text" size="70" placeholder="Write here to store"><br><br>
 
-Text example: <input id="myText1" type=text size=70 value="" placeholder="Write here to store"><br>
+    <!-- Button to store text in localStorage -->
+    <input type="button" value="Store Text" onclick="storeText()">
 
-<input type="button" value="Store Text" onClick="{
-   localStorage.setItem('myStoredText', document.getElementById('myText1').value)
-   alert(document.getElementById('myText1').value + ' \nHas been stored')
-   document.getElementById('myText1').value = ''
-}">
+    <!-- Button to retrieve text from localStorage -->
+    <input type="button" value="Retrieve Text" onclick="retrieveText()">
 
-<input type="button" value="Retrieve Text" onClick="{
-   document.getElementById('myText1').value = localStorage.getItem('myStoredText')
-}"> 
+    <script>
+        // Function to load text from localStorage when the page loads
+        function loadStoredText() {
+            const storedText = localStorage.getItem('myStoredText');
+            if (storedText) {
+                document.getElementById('myText1').value = storedText;
+            }
+        }
+
+        // Function to store text in localStorage
+        function storeText() {
+            const textInput = document.getElementById('myText1').value;
+            if (textInput.trim() !== "") {
+                localStorage.setItem('myStoredText', textInput);
+                alert(`${textInput}\nHas been stored.`);
+                document.getElementById('myText1').value = ''; // Clear input field
+            } else {
+                alert('Please enter some text before storing.');
+            }
+        }
+
+        // Function to retrieve text from localStorage
+        function retrieveText() {
+            const storedText = localStorage.getItem('myStoredText');
+            if (storedText) {
+                document.getElementById('myText1').value = storedText;
+            } else {
+                alert('No stored text found.');
+            }
+        }
+
+        // Function to save text to localStorage when the page unloads
+        window.onunload = function() {
+            const textInput = document.getElementById('myText1').value;
+            if (textInput.trim() !== "") {
+                localStorage.setItem('myStoredText', textInput);
+            }
+        };
+    </script>
+
+</body>
