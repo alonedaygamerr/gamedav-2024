@@ -77,7 +77,110 @@
         <textarea name="myTextarea">wow</textarea><br>
         <input type="text" name="myText1" id="myText2" value="">
     </form>
+<head><title>objects</title>
 
+
+<script>
+document.name="myDocument"
+window.name="myWindow"
+document.cookie = "cookieName=fred"
+
+
+var splitIndex = 0;
+var splitArray = new Array();
+
+function splits(string,text) {
+    var strLength = string.length, txtLength = text.length;
+    if ((strLength == 0) || (txtLength == 0)) return;
+
+    var i = string.indexOf(text);
+    if ((!i) && (text != string.substring(0,txtLength))) return;
+    if (i == -1) {
+        splitArray[splitIndex++] = string;
+        return;
+    }
+
+    splitArray[splitIndex++] = string.substring(0,i);
+    
+    if (i+txtLength < strLength)
+        splits(string.substring(i+txtLength,strLength),text);
+
+    return;
+}
+
+function split(string,text) {
+    splitIndex = 0;
+    splits(string,text);
+}
+
+function join(arrayName) {
+    var temp = '';
+    for (var i=0; i<splitIndex; i++)
+        temp += arrayName[i] + '\n';
+    if (escape(temp.substring(0,1)) == '%0A')
+        return temp.substring(1,temp.length);
+    else
+        return temp;
+}
+
+function sort(arrayName) {
+    for (var i=0; i<(splitIndex-1); i++)
+        for (var j=i+1; j<splitIndex; j++)
+            if (arrayName[j] < arrayName[i]) {
+                var dummy = arrayName[i];
+                arrayName[i] = arrayName[j];
+                arrayName[j] = dummy;
+            }
+}
+
+function sorttext() {
+    split(document.myForm.myTextarea.value,'\n');
+    sort(splitArray);
+    document.myForm.myTextarea.value = join(splitArray);
+}
+//--></script>
+
+<script language="JavaScript1.1"><!--
+function split(string,text) {
+    splitArray = string.split(text);
+    splitIndex = splitArray.length;
+}
+
+
+function myObjectData(myObject){
+ window.status = 'Please Wait'
+ document.myForm.myText1.value = ''
+ document.myForm.myTextarea.value = ''
+ myLoop = 0
+ for (var prop in myObject){
+    myLoop+=1
+    document.myForm.myTextarea.value+=myObject.name+'.'+prop+'='+myObject[prop]+ '\n'
+    if (myLoop % 3 == 1){
+ window.status += '.'}   
+ }
+ document.myForm.myText1.value =this.parent.name + '.'+myObject.name
+ window.status += 'Loaded '  
+  sorttext() 
+ window.status += 'Sorted.'  
+}
+
+
+
+
+
+
+document.counter=0   // one time set counter = 0
+function moreAnimations(){
+  document.counter+=1
+  document.all.myPic1.style.pixelLeft+=2
+  document.all.myPic1.style.pixelTop+=1
+  if ((document.counter>10) && (document.counter<20)){
+      document.all.myPic1.style.height=parseInt(document.all.myPic1.style.height)+10
+  }
+
+}
+
+</script></head>
     <h3>Click the buttons to see all usable properties and methods of the object. Click refresh to reset Browser</h3>
     <form name="myForm">
         <input type="button" value="1 window" onclick="displayData('Data from window object');">
@@ -96,9 +199,8 @@
         <input type="button" value="14 document.getElementById(\'myText2\')" onclick="displayData('Data from document.getElementById(myText2) object');">
     </form>
 
-    <div id="output-box">
-        <p>Output will appear here...</p>
-    </div>
+  <textarea name="myTextarea" rows=20 cols=70 wrap></textarea>
+</form>
 
     <p>At the bottom of every page make sure you include the following button:</p>
     <input type="button" value="Back" onclick="{window.history.back()}">
