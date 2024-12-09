@@ -1,143 +1,75 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>t1a03-table-list-dallas</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #3498db;
-        }
-        .container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap; /* Allows multiple tables to fit nicely on smaller screens */
-        }
-        table {
-            width: 40%;
-            margin: 20px;
-            border-collapse: collapse;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
-            background-color: #fff; /* White background for the table */
-        }
-        th, td {
-            border: 1px solid #ddd; /* Light gray border */
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #3498db;
-            color: white;
-            font-weight: bold;
-        }
-        td {
-            background-color: #ecf0f1;
-        }
-        /* Hover effect on table cells */
-        td:hover {
-            background-color: #bdc3c7;
-        }
-        /* Section titles */
-        .section-title {
-            text-align: center;
-            font-size: 20px;
-            margin-top: 40px;
-            color: #2c3e50;
-        }
-    </style>
+    <title>Enhanced Tables and Lists</title>
 </head>
 <body>
+    <h1>Enhanced Tables with Lists and Links</h1>
 
-    <h1>Enhanced 2x2 Tables</h1>
+    <!-- Section: Lists -->
+    <h2>Lists and Nested Lists</h2>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2
+            <ul>
+                <li>Subitem 1</li>
+                <li>Subitem 2</li>
+            </ul>
+        </li>
+        <li>Item 3</li>
+    </ul>
 
-    <!-- Section 1 -->
-    <div class="section-title">Table Section 1</div>
-    <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Row 1, Cell 1</td>
-                    <td>Row 1, Cell 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2, Cell 1</td>
-                    <td>Row 2, Cell 2</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Section: 2x2 Table -->
+    <h2>2x2 Table with Images and Links</h2>
+    <table border="1" style="width: 50%; margin-bottom: 20px;">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="https://via.placeholder.com/100" alt="Placeholder Image"></td>
+                <td><a href="https://example.com" target="_blank">Visit Example</a></td>
+            </tr>
+            <tr>
+                <td><img src="https://via.placeholder.com/100" alt="Placeholder Image"></td>
+                <td><a href="https://example.com" target="_blank">Visit Example</a></td>
+            </tr>
+        </tbody>
+    </table>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Row 1, Cell 1</td>
-                    <td>Row 1, Cell 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2, Cell 1</td>
-                    <td>Row 2, Cell 2</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Section 2 -->
-    <div class="section-title">Table Section 2</div>
-    <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Row 1, Cell 1</td>
-                    <td>Row 1, Cell 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2, Cell 1</td>
-                    <td>Row 2, Cell 2</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Row 1, Cell 1</td>
-                    <td>Row 1, Cell 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2, Cell 1</td>
-                    <td>Row 2, Cell 2</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
+    <!-- Section: 3x4 Table -->
+    <h2>3x4 Table with Images and Links</h2>
+    <table border="1" style="width: 80%;">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Link</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="https://via.placeholder.com/100" alt="Placeholder Image"></td>
+                <td><a href="https://example.com" target="_blank">Visit Example</a></td>
+                <td>Sample description text 1</td>
+            </tr>
+            <tr>
+                <td><img src="https://via.placeholder.com/100" alt="Placeholder Image"></td>
+                <td><a href="https://example.com" target="_blank">Visit Example</a></td>
+                <td>Sample description text 2</td>
+            </tr>
+            <tr>
+                <td><img src="https://via.placeholder.com/100" alt="Placeholder Image"></td>
+                <td><a href="https://example.com" target="_blank">Visit Example</a></td>
+                <td>Sample description text 3</td>
+            </tr>
+            <tr>
+                <td><img src="https://via.placeholder.com/100" alt="Placeholder Image"></td>
+                <td><a href="https://example.com" target="_blank">Visit Example</a></td>
+                <td>Sample description text 4</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
