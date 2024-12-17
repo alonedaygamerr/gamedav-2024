@@ -1,80 +1,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Puzzle Game</title>
+    <title>Endless Platformer</title>
     <style>
         body {
+            margin: 0;
+            overflow: hidden;
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
         }
 
-        h1 {
-            color: #333;
+        canvas {
+            display: block;
+            background-color: #87CEEB;
         }
 
-        .puzzle {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 2px solid black;
+            display: none;
         }
 
-        .puzzle div {
-            width: 50px;
-            height: 50px;
-            background-color: #4CAF50;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .hidden {
-            background-color: #f0f0f0;
-            color: #f0f0f0;
-            cursor: default;
-        }
-
-        .message {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #555;
+        .game-over button {
+            padding: 10px 20px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <h1>Find the Hidden Number</h1>
-    <p>Click on the boxes to find the hidden number!</p>
-
-    <div class="puzzle">
-        <div data-number="1">1</div>
-        <div data-number="2">2</div>
-        <div data-number="3">3</div>
+    <canvas id="gameCanvas"></canvas>
+    <div class="game-over" id="gameOver">
+        <h1>Game Over!</h1>
+        <p id="finalScore"></p>
+        <button onclick="startGame()">Play Again</button>
     </div>
 
-    <div class="message" id="message"></div>
-
     <script>
-        const boxes = document.querySelectorAll('.puzzle div');
-        const message = document.getElementById('message');
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gameOverDiv = document.getElementById('gameOver');
+        const finalScore = document.getElementById('finalScore');
 
-        // Randomly hide one number
-        const hiddenIndex = Math.floor(Math.random() * boxes.length);
-        boxes[hiddenIndex].classList.add('hidden');
+        canvas.width = 400;
+        canvas.height = 600;
 
-        boxes.forEach(box => {
-            box.addEventListener('click', () => {
-                if (box.classList.contains('hidden')) {
-                    message.textContent = 'You found the hidden number!';
-                    box.classList.remove('hidden');
-                } else {
-                    message.textContent = 'Try again!';
+        let player = {
+            x: 200,
+            y: 500,
+            width: 20,
+            height: 20,
+            dx: 0,
+            dy: 0,
+            gravity: 0.5,
+            jump: -10
+        };
+
+        let platforms = [];
+        let score = 0;
+        let isGameOver = false;
+
+        function createPlatform(x, y, width, height) {
+            return { x, y, width, height };
+        }
+
+        function resetGame() {
+            player.x = 200;
+            player.y = 500;
+            player.dy = 0;
+            platforms = [
+                createPlatform(150, 550, 100, 10),
+                createPlatform(250, 450, 100, 10),
+                createPlatform(50, 350, 100, 10),
+                createPlatform(200, 250, 100, 10),
+                createPlatform(100, 150, 100, 10)
+            ];
+            score = 0;
+            isGameOver = false;
+            gameOverDiv.style.display = 'none';
+        }
+
+        function startGame() {
+            resetGame();
+            requestAnimationFrame(update);
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+        }
+
+        function drawPlatforms() {
+            ctx.fillStyle = 'green';
+            platforms.forEach(platform => {
+                ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
+            });
+        }
+
+        function movePlayer() {
+            player.dy += player.gravity;
+            player.y += player.dy;
+
+            // Move left and right
+            player.x += player.dx;
+            if (player.x < 0) player.x = 0;
+            if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+        }
+
+        function checkCollision() {
+            platforms.forEach(platform => {
+                if (
+                    player.x < platform.x + platform.width &&
+                    player.x + player.width > platform.x &&
+                    player.y + player.height < platform.y + 10 &&
+                    player.y + player.height > platform.y &&
+                    player.dy > 0
+                ) {
+                    player.dy = player.jump;
+                    score++;
                 }
             });
+        }
+
+        function movePlatforms() {
+            platforms.forEach(platform => {
+                platform.y += 2;
+                if (platform.y > canvas.height) {
+                    platform.y = -10;
+                    platform.x = Math.random() * (canvas.width - platform.width);
+                }
+            });
+        }
+
+        function checkGameOver() {
+            if (player.y > canvas.height) {
+                isGameOver = true;
+                finalScore.textContent = `Your score: ${score}`;
+                gameOverDiv.style.display = 'block';
+            }
+        }
+
+        function update() {
+            if (isGameOver) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            movePlayer();
+            movePlatforms();
+            checkCollision();
+            checkGameOver();
+
+            drawPlayer();
+            drawPlatforms();
+
+            ctx.fillStyle = 'black';
+            ctx.fillText(`Score: ${score}`, 10, 20);
+
+            requestAnimationFrame(update);
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') player.dx = -5;
+            if (e.key === 'ArrowRight') player.dx = 5;
         });
+
+        document.addEventListener('keyup', e => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') player.dx = 0;
+        });
+
+        startGame();
     </script>
 </body>
-</html>
