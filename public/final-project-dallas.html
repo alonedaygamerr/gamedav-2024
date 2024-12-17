@@ -1,15 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Endless Platformer</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #87CEEB;
         }
 
         canvas {
-            display: block;
             background-color: #87CEEB;
+            display: block;
         }
 
         .game-over {
@@ -43,18 +52,18 @@
         const gameOverDiv = document.getElementById('gameOver');
         const finalScore = document.getElementById('finalScore');
 
-        canvas.width = 600;
-        canvas.height = 800;
+        canvas.width = 400;
+        canvas.height = 600;
 
         let player = {
-            x: 200,
-            y: 500,
+            x: canvas.width / 2 - 10,
+            y: canvas.height - 50,
             width: 20,
             height: 20,
             dx: 0,
             dy: 0,
             gravity: 0.5,
-            jump: -14
+            jump: -10
         };
 
         let platforms = [];
@@ -66,15 +75,15 @@
         }
 
         function resetGame() {
-            player.x = 200;
-            player.y = 500;
+            player.x = canvas.width / 2 - 10;
+            player.y = canvas.height - 50;
             player.dy = 0;
             platforms = [
-                createPlatform(150, 550, 100, 10),
-                createPlatform(250, 450, 100, 10),
-                createPlatform(50, 350, 100, 10),
-                createPlatform(200, 250, 100, 10),
-                createPlatform(100, 150, 100, 10)
+                createPlatform(150, canvas.height - 50, 100, 10),
+                createPlatform(250, canvas.height - 150, 100, 10),
+                createPlatform(50, canvas.height - 250, 100, 10),
+                createPlatform(200, canvas.height - 350, 100, 10),
+                createPlatform(100, canvas.height - 450, 100, 10)
             ];
             score = 0;
             isGameOver = false;
@@ -102,7 +111,6 @@
             player.dy += player.gravity;
             player.y += player.dy;
 
-            // Move left and right
             player.x += player.dx;
             if (player.x < 0) player.x = 0;
             if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
@@ -127,7 +135,7 @@
             platforms.forEach(platform => {
                 platform.y += 2;
                 if (platform.y > canvas.height) {
-                    platform.y = -10;
+                    platform.y = Math.random() * -150;
                     platform.x = Math.random() * (canvas.width - platform.width);
                 }
             });
