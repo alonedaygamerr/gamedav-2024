@@ -1,0 +1,80 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Puzzle Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .puzzle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .puzzle div {
+            width: 50px;
+            height: 50px;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .hidden {
+            background-color: #f0f0f0;
+            color: #f0f0f0;
+            cursor: default;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Find the Hidden Number</h1>
+    <p>Click on the boxes to find the hidden number!</p>
+
+    <div class="puzzle">
+        <div data-number="1">1</div>
+        <div data-number="2">2</div>
+        <div data-number="3">3</div>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <script>
+        const boxes = document.querySelectorAll('.puzzle div');
+        const message = document.getElementById('message');
+
+        // Randomly hide one number
+        const hiddenIndex = Math.floor(Math.random() * boxes.length);
+        boxes[hiddenIndex].classList.add('hidden');
+
+        boxes.forEach(box => {
+            box.addEventListener('click', () => {
+                if (box.classList.contains('hidden')) {
+                    message.textContent = 'You found the hidden number!';
+                    box.classList.remove('hidden');
+                } else {
+                    message.textContent = 'Try again!';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
