@@ -74,20 +74,21 @@
             return { x, y, width, height };
         }
 
-        function resetGame() {
-            player.x = canvas.width / 2 - 10;
-            player.y = canvas.height - 50;
-            player.dy = 0;
-            platforms = [
-                createPlatform(150, canvas.height - 50, 100, 10),
-                createPlatform(250, canvas.height - 150, 100, 10),
-                createPlatform(50, canvas.height - 250, 100, 10),
-                createPlatform(200, canvas.height - 350, 100, 10),
-                createPlatform(100, canvas.height - 450, 100, 10)
-            ];
-            score = 0;
-            isGameOver = false;
-            gameOverDiv.style.display = 'none';
+       function resetGame() {
+    player.x = canvas.width / 2 - 10;
+    player.y = canvas.height / 2; // Spawn the player in the middle of the canvas
+    player.dy = 0;
+    platforms = [
+        createPlatform(150, canvas.height - 50, 100, 10),
+        createPlatform(250, canvas.height - 150, 100, 10),
+        createPlatform(50, canvas.height - 250, 100, 10),
+        createPlatform(200, canvas.height - 350, 100, 10),
+        createPlatform(100, canvas.height - 450, 100, 10)
+    ];
+    score = 0;
+    isGameOver = false;
+    gameOverDiv.style.display = 'none';
+}
         }
 
         function startGame() {
