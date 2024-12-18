@@ -165,12 +165,12 @@
         }
 
         document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowLeft') player.dx = -5;
-            if (e.key === 'ArrowRight') player.dx = 5;
+            if (e.key === 'a') player.dx = -5;
+            if (e.key === 'd') player.dx = 5;
         });
 
         document.addEventListener('keyup', e => {
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') player.dx = 0;
+            if (e.key === 'a' || e.key === 'd') player.dx = 0;
         });
 
         startGame();
