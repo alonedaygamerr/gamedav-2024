@@ -1,14 +1,16 @@
 <body id="myBody" style="background-repeat:repeat; background-size: 80%" background="https://th.bing.com/th/id/OIP.3Da6kDcAicZMhXn09uqKYgHaFj?rs=1&pid=ImgDetMain">
 
-<h1 align="center">t2a11 Game Template by Fred</h1>
+<h1 align="center">Enhanced Game Template</h1>
 <br><br>
 
+<div id="scoreBoard" style="text-align: center; font-size: 20px;">Score: 0</div>
+
 <script>
-   // Global variables
    let myGlobalX = 0;
    let myClock;
+   let score = 0;
+   let scoreInterval;
 
-   // Global functions
    function myHitOther(my1, my2) {
        const left1 = parseInt(document.getElementById(my1).style.left);
        const right1 = left1 + parseInt(document.getElementById(my1).style.width);
@@ -24,9 +26,10 @@
 
    function myCheckHit() {
        if (myHitOther('myImg01', 'myImg02')) {
-           alert('You lose!');
-           document.getElementById('myImg01').style.left = '20px';
-           location = 't2a13-keydown.html'; // Go to the next level
+           alert('Game Over! Your score: ' + score);
+           stopBackgroundAnimation();
+           clearInterval(scoreInterval);
+           resetGame();
        }
    }
 
@@ -51,10 +54,20 @@
            myGlobalX -= 5;
            document.getElementById('myBody').style.backgroundPosition = `${myGlobalX}px 0px`;
        }, 100);
+       startScoring();
    }
 
    function stopBackgroundAnimation() {
        clearInterval(myClock);
+       clearInterval(scoreInterval);
+   }
+
+   function startScoring() {
+       score = 0;
+       scoreInterval = setInterval(function() {
+           score += 1;
+           document.getElementById('scoreBoard').innerText = `Score: ${score}`;
+       }, 1000);
    }
 
    function resetGame() {
@@ -62,7 +75,18 @@
        document.getElementById('myImg01').style.left = '50px';
        myGlobalX = 0;
        document.getElementById('myBody').style.backgroundPosition = '0px 0px';
+       document.getElementById('scoreBoard').innerText = 'Score: 0';
    }
+
+   function moveObstacle() {
+       const obstacle = document.getElementById('myImg02');
+       const randomTop = Math.floor(Math.random() * 400) + 'px';
+       const randomLeft = Math.floor(Math.random() * 600 + 100) + 'px';
+       obstacle.style.top = randomTop;
+       obstacle.style.left = randomLeft;
+   }
+
+   setInterval(moveObstacle, 3000);
 </script>
 
 <!-- Game Elements -->
@@ -71,8 +95,8 @@
 
 <!-- Control Buttons -->
 <div style="margin-top: 20px;">
-    <input type="button" value="Auto Background Left" onclick="startBackgroundAnimation()">
-    <input type="button" value="Stop Background" onclick="stopBackgroundAnimation()">
+    <input type="button" value="Start Game" onclick="startBackgroundAnimation()">
+    <input type="button" value="Stop Game" onclick="stopBackgroundAnimation()">
     <br><br>
     
     <input type="button" value="Move Up" onclick="moveImage('up')">
