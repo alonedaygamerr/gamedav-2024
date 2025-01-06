@@ -95,6 +95,16 @@
    }
 
    setInterval(moveObstacle, 3000);
+
+   // Add event listener for arrow key movement
+   document.addEventListener('keydown', (event) => {
+       const key = event.key;
+
+       if (key === 'ArrowUp') moveImage('up');
+       if (key === 'ArrowDown') moveImage('down');
+       if (key === 'ArrowLeft') moveImage('left');
+       if (key === 'ArrowRight') moveImage('right');
+   });
 </script>
 
 <!-- Game Elements -->
@@ -105,12 +115,6 @@
 <div style="margin-top: 20px;">
     <input type="button" value="Start Game" onclick="startBackgroundAnimation()">
     <input type="button" value="Stop Game" onclick="stopBackgroundAnimation()">
-    <br><br>
-    
-    <input type="button" value="Move Up" onclick="moveImage('up')">
-    <input type="button" value="Move Left" onclick="moveImage('left')">
-    <input type="button" value="Move Right" onclick="moveImage('right')">
-    <input type="button" value="Move Down" onclick="moveImage('down')">
     <br><br>
     
     <input type="button" value="Reset Game" onclick="resetGame()">
