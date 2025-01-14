@@ -4,7 +4,7 @@
     <title>t2a20-spy-dallas</title>
     <style>
         body {
-            background-image: url('https://wallpaperaccess.com/full/2540913.jpg'); /* Replace with your image URL */
+            background-image: url('https://wallpaperaccess.com/full/2540913.jpg'); 
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
@@ -45,13 +45,13 @@
 
                     if (char === ' ') {
                         encryptedText += ' ';
-                        continue; // Preserve spaces
+                        continue; 
                     } else if (char >= 'A' && char <= 'Z') {
-                        charCode = ((charCode - 65 + 2) % 26) + 65; // Uppercase letters
+                        charCode = ((charCode - 65 + 2) % 26) + 65; 
                     } else if (char >= 'a' && char <= 'z') {
-                        charCode = ((charCode - 97 + 2) % 26) + 97; // Lowercase letters
+                        charCode = ((charCode - 97 + 2) % 26) + 97; 
                     } else if (char >= '0' && char <= '9') {
-                        charCode = ((charCode - 48 + 2) % 10) + 48; // Numbers
+                        charCode = ((charCode - 48 + 2) % 10) + 48; 
                     }
 
                     encryptedText += String.fromCharCode(charCode);
@@ -78,11 +78,11 @@
                         decryptedText += ' ';
                         continue; // Preserve spaces
                     } else if (char >= 'A' && char <= 'Z') {
-                        charCode = ((charCode - 65 - 2 + 26) % 26) + 65; // Uppercase letters
+                        charCode = ((charCode - 65 - 2 + 26) % 26) + 65; 
                     } else if (char >= 'a' && char <= 'z') {
-                        charCode = ((charCode - 97 - 2 + 26) % 26) + 97; // Lowercase letters
+                        charCode = ((charCode - 97 - 2 + 26) % 26) + 97; 
                     } else if (char >= '0' && char <= '9') {
-                        charCode = ((charCode - 48 - 2 + 10) % 10) + 48; // Numbers
+                        charCode = ((charCode - 48 - 2 + 10) % 10) + 48; 
                     }
 
                     decryptedText += String.fromCharCode(charCode);
